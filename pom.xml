@@ -42,11 +42,11 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!--MySQL数据库-->
+        <!-- Mybatis驱动 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <version>5.1.9</version>
         </dependency>
 
         <!--Lombok插件-->
