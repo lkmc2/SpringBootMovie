@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="MysqlContext" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!--分隔符 -->
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 通用mapper插件 -->
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <!-- 此处的 MyMapper注意一定不能被扫描到-->
+            <property name="mappers" value="com.lin.utils.MyMapper"/>
+        </plugin>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/spring_boot_movie"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+
+        <!-- 对应生成的pojo所在包 -->
+        <javaModelGenerator targetPackage="com.lin.model" targetProject="src/main/java"/>
+
+        <!-- 对应生成的mapper所在目录 -->
+        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources"/>
+
+        <!-- 配置mapper对应的java映射 -->
+        <javaClientGenerator targetPackage="com.lin.mapper" targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!--表名和映射的实体类名-->
+        <!--<table tableName="bgm" domainObjectName="Bgm"/>-->
+        <!--<table tableName="comments" domainObjectName="Comment"/>-->
+        <!--<table tableName="search_records" domainObjectName="SearchRecords"/>-->
+        <!--<table tableName="users" domainObjectName="User"/>-->
+        <!--<table tableName="users_fans" domainObjectName="UserFans"/>-->
+        <!--<table tableName="users_like_videos" domainObjectName="UserLikeVideos"/>-->
+        <!--<table tableName="users_report" domainObjectName="UserReport"/>-->
+        <!--<table tableName="videos" domainObjectName="Video"/>-->
+
+        <!--自动生成所有表的实体类-->
+        <table tableName="%" />
+        <!--<table tableName="%" >-->
+            <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+        <!--</table>-->
+
+    </context>
+</generatorConfiguration>
