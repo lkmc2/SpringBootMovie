@@ -63,11 +63,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!--mapper -->
+        <!--通用mapper -->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
-            <version>1.2.4</version>
+            <version>2.1.5</version>
         </dependency>
 
         <!-- Druid连接池 -->
@@ -106,6 +106,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
             <version>1.3.2</version>
+        </dependency>
+
+        <!-- 资源配置 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!--actuator环境监控-->

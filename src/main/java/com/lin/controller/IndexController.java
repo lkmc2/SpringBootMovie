@@ -4,16 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
+ * 首页控制器
  * @author lkmc2
- * @date 2019/2/16
- * @description 用户控制器
  */
 @Controller
-public class UserController {
+public class IndexController {
 
-    @GetMapping("/login")
+    @GetMapping("/index")
     public String login() {
-        return "login";
+        return "index";
     }
 
 }
