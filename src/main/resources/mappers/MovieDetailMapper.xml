@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.mapper.MovieDetailMapper">
+  <resultMap id="BaseResultMap" type="com.lin.model.MovieDetail">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="info" jdbcType="VARCHAR" property="info" />
+    <result column="film_id" jdbcType="INTEGER" property="filmId" />
+    <result column="web_site_id" jdbcType="INTEGER" property="webSiteId" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate" />
+  </resultMap>
+</mapper>
