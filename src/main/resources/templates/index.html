@@ -29,7 +29,92 @@
         <div th:include="/common/menu::menu"></div>
     </div>
     <div class="row">
-        <div></div>
+        <div class="col-md-8">
+            <!--<div th:include="${mainPage}::${mainPageKey}"></div>-->
+        </div>
+
+        <div class="col-md-4">
+            <!--数据列表-->
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="../static/images/dynamic_icon.png" th:src="@{/static/images/dynamic_icon.png}" alt="最新电影动态">
+                    最新电影动态
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li><span><a href="">流浪地球</a></span></li>
+                        <li><span><a href="">战狼2</a></span></li>
+                        <li><span><a href="">怦然心动</a></span></li>
+                        <li><span><a href="">飞驰人生</a></span></li>
+                        <li><span><a href="">白蛇传：缘起</a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="../static/images/hot_icon.png" th:src="@{/static/images/hot_icon.png}" alt="最新电影动态">
+                    最新热门电影推荐
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li><span><a href="">流浪地球</a></span></li>
+                        <li><span><a href="">战狼2</a></span></li>
+                        <li><span><a href="">怦然心动</a></span></li>
+                        <li><span><a href="">飞驰人生</a></span></li>
+                        <li><span><a href="">白蛇传：缘起</a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="../static/images/website_icon.png" th:src="@{/static/images/website_icon.png}" alt="最新电影动态">
+                    最新电影网址收录
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li><span><a href="">流浪地球</a></span></li>
+                        <li><span><a href="">战狼2</a></span></li>
+                        <li><span><a href="">怦然心动</a></span></li>
+                        <li><span><a href="">飞驰人生</a></span></li>
+                        <li><span><a href="">白蛇传：缘起</a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="../static/images/film_icon.png" th:src="@{/static/images/film_icon.png}" alt="最新电影动态">
+                    最新电影收录
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li><span><a href="">流浪地球</a></span></li>
+                        <li><span><a href="">战狼2</a></span></li>
+                        <li><span><a href="">怦然心动</a></span></li>
+                        <li><span><a href="">飞驰人生</a></span></li>
+                        <li><span><a href="">白蛇传：缘起</a></span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="data_list">
+                <div class="data_list_title">
+                    <img src="../static/images/link_icon.png" th:src="@{/static/images/link_icon.png}" alt="最新电影动态">
+                    友情链接
+                </div>
+                <div class="datas">
+                    <ul>
+                        <li><span><a href="">流浪地球</a></span></li>
+                        <li><span><a href="">战狼2</a></span></li>
+                        <li><span><a href="">怦然心动</a></span></li>
+                        <li><span><a href="">飞驰人生</a></span></li>
+                        <li><span><a href="">白蛇传：缘起</a></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div th:replace="/common/footer::footer"></div>
