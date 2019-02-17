@@ -5,9 +5,34 @@
     <title th:text="${title} + '-倾心电影网'"></title>
     <link href="../static/bootstrap3/css/bootstrap.min.css" th:href="@{/static/bootstrap3/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link href="../static/bootstrap3/css/bootstrap-theme.min.css" th:href="@{/static/bootstrap3/css/bootstrap-theme.min.css}" rel="stylesheet" type="text/css"/>
-    <link href="../static/css/film.css" th:href="@{/static/css/film.css}" rel="stylesheet" type="text/css"/>
+    <!--<link href="../static/css/film.css" th:href="@{/static/css/film.css}" rel="stylesheet" type="text/css"/>-->
+    <script th:inline="javascript">
+            /*<![CDATA[*/
+            window.onload = function () {
+                var err = [[${error}]];
+                if (err) {
+                    alert(err);
+                }
+            }
+            /*]]*/
+    </script>
 </head>
 <body>
-    Nothing is possible
+
+<div class="container">
+    <div class="row">
+        <div th:include="/common/header::header"></div>
+    </div>
+    <div class="row">
+        <div></div>
+    </div>
+    <div class="row">
+        <div></div>
+    </div>
+    <div class="row">
+        <div></div>
+    </div>
+</div>
+
 </body>
 </html>
