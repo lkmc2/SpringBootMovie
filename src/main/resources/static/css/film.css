@@ -28,6 +28,10 @@ body {
     padding: 5px;
 }
 
+.data_list .imageDatas {
+    height: 2100px;
+}
+
 .data_list .datas ul {
     list-style-type: none;
     padding-left: 15px;
@@ -35,4 +39,32 @@ body {
 
 .data_list .datas ul li {
     margin-top: 10px;
+}
+
+.data_list .datas .imageUl {
+    margin-left: 20px;
+}
+
+.data_list .datas .imageUl li {
+    float: left;
+    margin-right: 25px;
+}
+
+.data_list .datas .imageUl .imageLi {
+    height: 250px;
+}
+
+.data_list .datas .imageUl .imageLi p {
+    overflow: hidden;
+    text-align: center;
+    padding-top: 4px;
+}
+
+.data_list .data_list_title .datas {
+    padding: 5px;
+}
+
+.data_list .datas .indexMovie {
+    width: 140px;
+    height: 198px;
 }

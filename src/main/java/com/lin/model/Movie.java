@@ -1,11 +1,13 @@
 package com.lin.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.Date;
 import javax.persistence.*;
 
 @Data
+@AllArgsConstructor
 public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
