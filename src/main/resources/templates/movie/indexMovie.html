@@ -14,7 +14,7 @@
             <ul class="imageUl">
                 <li class="imageLi" th:each="movie : ${newestIndexHotMovieList}">
                     <a th:href="'/movie/' + ${movie.id}" target="_blank" th:title="${movie.name}">
-                        <img class="indexMovie" th:src="'/static/movieImage/' + ${movie.imageName}"  th:alt="${movie.name}">
+                        <img class="indexMovie" th:src="|/static/movieImage/${movie.imageName}|" th:alt="${movie.name}">
                         <p th:text="${movie.name}"></p>
                     </a>
                 </li>
