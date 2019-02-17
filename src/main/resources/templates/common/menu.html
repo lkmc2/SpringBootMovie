@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--菜单栏-->
+<div th:fragment="menu">
+    <div class="col-md-12" style="padding-top: 10px">
+        <nav class="navbar navbar-default">
+            <!--显示/隐藏菜单栏按钮-->
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/index" class="navbar-brand"><font color="black">首页</font></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                    <!--菜单栏内容-->
+                    <ul class="nav navbar-nav">
+                        <li><a href="/movie/list/1"><font color="black">收录电影</font></a></li>
+                        <li><a href="/website/list/1"><font color="black">收录电影网站</font></a></li>
+                        <li><a href="/websiteInfo/list/1"><font color="black">电影网站动态</font></a></li>
+                        <li><a href="/aboutMe"><font color="black">关于本站</font></a></li>
+                    </ul>
+
+                    <!--搜索框-->
+                    <form action="/movie/search" class="navbar-form navbar-right" role="search" method="post">
+                        <div class="form-group">
+                            <input type="text" id="q" name="name" th:value="${film==null?'':film.name}" class="form-control" placeholder="请输入要查询的关键字...">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+
+</body>
+</html>
