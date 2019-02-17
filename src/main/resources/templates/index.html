@@ -2,7 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title th:text="${title} + '-倾心电影网'"></title>
+    <link href="../static/bootstrap3/css/bootstrap.min.css" th:href="@{/static/bootstrap3/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link href="../static/bootstrap3/css/bootstrap-theme.min.css" th:href="@{/static/bootstrap3/css/bootstrap-theme.min.css}" rel="stylesheet" type="text/css"/>
+    <link href="../static/css/film.css" th:href="@{/static/css/film.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
     Nothing is possible

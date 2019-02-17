@@ -1,0 +1,97 @@
+body{
+	padding-top: 10px;
+	padding-bottom: 40px;
+}
+
+.data_list{
+	border: 1px solid #E5E5E5;
+	padding: 10px;
+	background-color: #FDFDFD;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+
+.data_list .data_list_title{
+	font-size: 15px;
+	font-weight: bold;
+	
+	border-bottom: 1px solid #E5E5E5;
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+
+.data_list .data_list_title img{
+	margin-top: 1px;
+	vertical-align: top;
+}
+
+.data_list .datas{
+	padding: 5px;
+}
+
+.data_list .imageDatas{
+	height: 2100px;
+}
+
+.data_list .rImageDatas{
+	height: 550px;
+}
+
+.data_list .lImageDatas{
+	height: 1300px;
+}
+
+.data_list .datas ul {
+	list-style-type: none;
+	padding-left: 15px;
+}
+
+.data_list .datas ul li {
+	margin-top: 10px;
+}
+
+.data_list .datas .imageUl{
+	margin-left: 20px;
+}
+.data_list .datas .imageUl li {
+	float: left;
+	margin-right: 25px;
+}
+
+.data_list .datas .imageUl .imageLi {
+	height: 250px;
+}
+
+.data_list .datas .imageUl .imageLi p{
+	overflow: hidden;
+	text-align: center;
+	padding-top: 4px;
+}
+
+.data_list .data_list_title .datas{
+	padding: 5px;
+}
+
+.data_list .datas .indexFilm{
+	width: 140px;
+	height: 198px;
+}
+
+.data_list .film_title{
+	margin-top:20px;
+	text-align: center;
+}
+
+.data_list .film_publishDate{
+	text-align: center;
+}
+
+.data_list .film_content{
+	margin-top:20px;
+	padding-bottom: 30px;
+}
+
+.data_list .film_lastAndNextPage{
+	border-top:1px dotted black;
+	padding: 10px;
+}
