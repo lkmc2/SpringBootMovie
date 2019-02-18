@@ -1,8 +1,10 @@
 package com.lin.controller;
 
+import com.lin.model.FriendlyLink;
 import com.lin.model.Movie;
 import com.lin.model.Website;
 import com.lin.model.vo.MovieDetailVo;
+import com.lin.service.FriendlyLinkService;
 import com.lin.service.MovieDetailService;
 import com.lin.service.MovieService;
 import com.lin.service.WebsiteService;
@@ -29,6 +31,9 @@ public class IndexController {
     @Autowired
     private WebsiteService websiteService;
 
+    @Autowired
+    private FriendlyLinkService friendlyLinkService;
+
     /**
      * 跳转到首页
      * @return 首页视图名
@@ -45,6 +50,8 @@ public class IndexController {
         List<Website> websiteList = websiteService.newestWebSiteList(1, 10);
         // 最新电影列表
         List<Movie> newestMovieList = movieService.newestMovieList(1, 10);
+        // 友情链接列表
+        List<FriendlyLink> friendlyLinkList = friendlyLinkService.newestLinkList(1, 10);
 
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("title", "首页");
@@ -55,6 +62,7 @@ public class IndexController {
         mv.addObject("newestDetailList", detailList);
         mv.addObject("newestWebSiteList", websiteList);
         mv.addObject("newestMovieList", newestMovieList);
+        mv.addObject("friendlyLinkList", friendlyLinkList);
         return mv;
     }
 
