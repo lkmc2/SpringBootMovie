@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--电影首页-->
+<div th:fragment="detail">
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="../../static/images/view_icon.png" th:src="@{/static/images/view_icon.png}" alt="电影详情信息">
+            电影详情信息
+        </div>
+
+        <div>
+            <div class="film_title">
+                <h3><strong th:text="${movie.title}"></strong></h3>
+            </div>
+        </div>
+        <div class="film_publishDate">
+            发布时间：<font th:text="${#dates.format(movie.publishDate, 'yyyy-MM-dd HH:mm:ss')}"></font>
+        </div>
+        <div class="film_content" th:utext="${movie.content}"></div>
+        <div class="film_last_and_next_page" th:utext="${pageCode}"></div>
+    </div>
+</div>
+
+</body>
+</html>

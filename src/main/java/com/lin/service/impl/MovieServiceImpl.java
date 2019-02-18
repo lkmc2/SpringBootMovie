@@ -3,7 +3,6 @@ package com.lin.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.lin.mapper.MovieMapper;
 import com.lin.model.Movie;
-import com.lin.model.Website;
 import com.lin.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +58,21 @@ public class MovieServiceImpl implements MovieService {
         example.setOrderByClause("publish_date desc");
 
         return movieMapper.selectByExample(example);
+    }
+
+    @Override
+    public Movie selectById(Integer id) {
+        return movieMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Movie getLast(Integer id) {
+        return movieMapper.selectByPrimaryKey(id - 1);
+    }
+
+    @Override
+    public Movie getNext(Integer id) {
+        return movieMapper.selectByPrimaryKey(id + 1);
     }
 
 }
