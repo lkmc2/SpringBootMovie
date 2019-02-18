@@ -34,4 +34,9 @@ public class MovieDetailServiceImpl implements MovieDetailService {
         return movieDetailMapperCustom.getNewestDetailList();
     }
 
+    @Override
+    public List<MovieDetailVo> getByMovieId(Integer movieId) {
+        return movieDetailMapperCustom.getByMovieId(movieId);
+    }
+
 }

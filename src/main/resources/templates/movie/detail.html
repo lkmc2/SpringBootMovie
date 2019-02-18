@@ -21,6 +21,38 @@
         <div class="film_content" th:utext="${movie.content}"></div>
         <div class="film_last_and_next_page" th:utext="${pageCode}"></div>
     </div>
+
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="../../static/images/list_icon.png" th:src="@{/static/images/list_icon.png}" alt="电影详情信息">
+            电影网站动态信息列表
+        </div>
+
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>发布日期</th>
+                        <th>动态信息</th>
+                        <th>来源于</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="detail,stat : ${movieDetailList}">
+                        <td scope="row" th:text="${stat.index + 1}"></td>
+                        <td th:text="${#dates.format(detail.publishDate, 'yyyy-MM-dd')}"></td>
+                        <td>
+                            <a th:href="${detail.url}" th:text="${detail.info}" th:title="${detail.info}" target="_blank"></a>
+                        </td>
+                        <td>
+                            <a th:href="${detail.url}" th:text="${detail.websiteName}" th:title="${detail.websiteName}" target="_blank"></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 </body>

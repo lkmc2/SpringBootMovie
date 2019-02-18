@@ -1,6 +1,7 @@
 package com.lin.controller;
 
 import com.lin.model.Movie;
+import com.lin.service.MovieDetailService;
 import com.lin.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,9 @@ public class MovieController {
     @Autowired
     private MovieService movieService;
 
+    @Autowired
+    private MovieDetailService movieDetailService;
+
     /**
      * 根据id查询电影详情信息
      * @param id 电影id
@@ -28,13 +32,14 @@ public class MovieController {
     @GetMapping("/{id}")
     public ModelAndView view(@PathVariable("id") Integer id) {
         // 根据id获取电影信息
-        Movie movie = movieService.selectById(id);
+        Movie movie = movieService.getById(id);
 
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("movie", movie);
         mv.addObject("title", movie.getTitle());
         mv.addObject("pageCode", this.generateUpAndDownPageCode(movieService.getLast(id), movieService.getNext(id)));
         mv.addObject("mainPage", "movie/detail");
+        mv.addObject("movieDetailList", movieDetailService.getByMovieId(id));
         mv.addObject("fragment", "detail");
         return mv;
     }

@@ -15,6 +15,7 @@ public class MovieDetailVo {
     private Integer movieId; // 电影id
     private Integer websiteId; // 网站id
     private String websiteName; // 网站名称
+    private String websiteUrl; // 网站网址
     private String url; // 电影网址
     private Date publishDate; // 发布日期
 }

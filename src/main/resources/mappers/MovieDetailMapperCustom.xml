@@ -10,6 +10,7 @@
         <result column="movie_id" jdbcType="INTEGER" property="movieId"/>
         <result column="website_id" jdbcType="INTEGER" property="websiteId"/>
         <result column="website_name" jdbcType="VARCHAR" property="websiteName"/>
+        <result column="website_url" jdbcType="VARCHAR" property="websiteUrl"/>
         <result column="url" jdbcType="VARCHAR" property="url"/>
         <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate"/>
     </resultMap>
@@ -17,16 +18,32 @@
     <!--查询最新电影动态列表-->
     <select id="getNewestDetailList" resultMap="BaseResultMap">
         select
-               m.id,
-               m.info,
-               m.movie_id,
-               m.website_id,
-               w.name as website_name,
-               m.url,
-               m.publish_date
+           m.id,
+           m.info,
+           m.movie_id,
+           m.website_id,
+           w.name as website_name,
+           m.url,
+           m.publish_date
         from movie_detail m
         left join website w on m.website_id = w.id
         order by m.publish_date desc
+    </select>
+
+    <!--根据电影id获取电影详情信息-->
+    <select id="getByMovieId" resultMap="BaseResultMap">
+        select
+            m.id,
+            m.info,
+            m.movie_id,
+            m.website_id,
+            w.name as website_name,
+            w.url as website_url,
+            m.url,
+            m.publish_date
+        from movie_detail m
+        left join website w on m.website_id = w.id
+        where m.movie_id = #{movieId}
     </select>
 
 </mapper>

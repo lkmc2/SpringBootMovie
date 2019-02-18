@@ -61,7 +61,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Movie selectById(Integer id) {
+    public Movie getById(Integer id) {
         return movieMapper.selectByPrimaryKey(id);
     }
 

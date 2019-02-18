@@ -16,4 +16,11 @@ public interface MovieDetailService {
      * @return 电影动态列表
      */
     List<MovieDetailVo> getNewestDetailList(Integer page, Integer pageSize);
+
+    /**
+     * 根据电影id获取电影详情信息
+     * @param movieId 电影id
+     * @return 电影详情信息列表
+     */
+    List<MovieDetailVo> getByMovieId(Integer movieId);
 }

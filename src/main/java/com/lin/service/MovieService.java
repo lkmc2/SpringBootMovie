@@ -30,7 +30,7 @@ public interface MovieService {
      * @param id 电影id
      * @return id对应的电影
      */
-    Movie selectById(Integer id);
+    Movie getById(Integer id);
 
     /**
      * 根据id获取上一部电影
