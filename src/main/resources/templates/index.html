@@ -99,11 +99,14 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <li><span><a href="">流浪地球</a></span></li>
-                        <li><span><a href="">战狼2</a></span></li>
-                        <li><span><a href="">怦然心动</a></span></li>
-                        <li><span><a href="">飞驰人生</a></span></li>
-                        <li><span><a href="">白蛇传：缘起</a></span></li>
+                        <li th:each="movie : ${newestMovieList}">
+                            <span>
+                                <a th:href="|/movie/${movie.id}|" target="_blank"
+                                   th:title="${movie.name}"
+                                   th:text="${movie.name}">
+                                </a>
+                            </span>
+                        </li>
                     </ul>
                 </div>
             </div>

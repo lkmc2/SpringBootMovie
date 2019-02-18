@@ -1,6 +1,7 @@
 package com.lin.service;
 
 import com.lin.model.Movie;
+import com.lin.model.Website;
 
 import java.util.List;
 
@@ -16,4 +17,12 @@ public interface MovieService {
      * @return 电影列表
      */
     List<Movie> getHotMovieList(Integer page, Integer pageSize);
+
+    /**
+     * 分页查询最新电影列表
+     * @param page 当前页
+     * @param pageSize 每页条数
+     * @return 电影列表
+     */
+    List<Movie> newestMovieList(Integer page, Integer pageSize);
 }
