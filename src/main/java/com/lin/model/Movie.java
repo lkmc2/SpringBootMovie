@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Data
@@ -18,6 +19,8 @@ public class Movie {
     @Column(name = "image_name")
     private String imageName; // 图片名
 
+    @NotEmpty(message = "请输入您要搜索的电影名！")
+    @Column(length = 200)
     private String name; // 电影名
 
     @Column(name = "publish_date")

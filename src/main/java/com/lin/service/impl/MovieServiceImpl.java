@@ -88,4 +88,25 @@ public class MovieServiceImpl implements MovieService {
         return movieMapperCustom.randomList(count);
     }
 
+    @Override
+    public List<Movie> queryMovieByName(String movieName, Integer page, Integer pageSize) {
+        if (page == null) {
+            page = 1;
+        }
+        if (pageSize == null) {
+            pageSize = 32;
+        }
+
+        // 进行分页
+        PageHelper.startPage(page, pageSize);
+
+        // 创建查询条件（电影名like，根据发布日期降序排序）
+        Example example = new Example(Movie.class);
+        example.setOrderByClause("publish_date desc");
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andLike("name", "%" + movieName + "%");
+
+        return movieMapper.selectByExample(example);
+    }
+
 }

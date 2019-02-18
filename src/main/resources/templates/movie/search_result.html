@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--电影搜索结果-->
+<div th:fragment="search_result">
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="../../static/images/search_icon.png" th:src="@{/static/images/search_icon.png}" alt="猜你喜欢">
+            电影搜索结果（搜索到&nbsp;<font color="red"><strong th:text="${total}"></strong></font>&nbsp;条结果&nbsp;最多显示32条结果）
+        </div>
+
+        <div class="datas imageDatas">
+            <ul class="imageUl">
+                <li class="imageLi" th:each="movie : ${movieList}">
+                    <a th:href="|/movie/${movie.id}|" target="_blank" th:title="${movie.name}">
+                        <img class="indexMovie" th:src="|/static/movieImage/${movie.imageName}|" alt="">
+                        <p th:text="${movie.name}"></p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

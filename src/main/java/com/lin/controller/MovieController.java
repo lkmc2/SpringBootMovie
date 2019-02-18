@@ -5,10 +5,16 @@ import com.lin.service.MovieDetailService;
 import com.lin.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * 电影控制器
@@ -23,6 +29,40 @@ public class MovieController {
 
     @Autowired
     private MovieDetailService movieDetailService;
+
+    /**
+     * 搜索电影 简单模糊查询
+     * @param movie 电影
+     * @param bindingResult Valid 验证结果
+     * @return 搜索结果页面
+     */
+    @RequestMapping("/search")
+    public ModelAndView search(@Valid Movie movie, BindingResult bindingResult) {
+        ModelAndView mv = new ModelAndView("index");
+
+        if (bindingResult.hasErrors()) {
+            // 发生错误则跳转到首页
+            mv.addObject("error", Objects.requireNonNull(bindingResult.getFieldError()).getDefaultMessage());
+            mv.addObject("title", "首页");
+            mv.addObject("mainPage", "movie/indexMovie");
+            mv.addObject("fragment", "indexMovie");
+            mv.addObject("movie", movie);
+        } else {
+            // 跳转到搜索结果页面
+            String movieName = movie.getName();
+
+            // 根据电影名查询电影列表（最多查询32条）
+            List<Movie> movieList = movieService.queryMovieByName(movieName, 1, 32);
+
+            mv.addObject("title", movieName);
+            mv.addObject("movieList", movieList);
+            mv.addObject("mainPage", "movie/search_result");
+            mv.addObject("fragment", "search_result");
+            mv.addObject("movie", movie);
+            mv.addObject("total", movieList.size());
+        }
+        return mv;
+    }
 
     /**
      * 根据id查询电影详情信息

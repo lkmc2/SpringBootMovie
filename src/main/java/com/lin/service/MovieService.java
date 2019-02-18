@@ -52,4 +52,13 @@ public interface MovieService {
      * @return 随机电影列表
      */
     List<Movie> randomList(Integer count);
+
+    /**
+     * 根据电影名查询电影列表
+     * @param movieName 电影名
+     * @param page 当前页
+     * @param pageSize 每页条数
+     * @return 电影列表
+     */
+    List<Movie> queryMovieByName(String movieName, Integer page, Integer pageSize);
 }
