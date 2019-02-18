@@ -80,11 +80,14 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <li><span><a href="">流浪地球</a></span></li>
-                        <li><span><a href="">战狼2</a></span></li>
-                        <li><span><a href="">怦然心动</a></span></li>
-                        <li><span><a href="">飞驰人生</a></span></li>
-                        <li><span><a href="">白蛇传：缘起</a></span></li>
+                        <li th:each="website : ${newestWebSiteList}">
+                            <span>
+                                <a th:href="${website.url}" target="_blank"
+                                   th:title="${website.name}"
+                                   th:text="${website.name}">
+                                </a>
+                            </span>
+                        </li>
                     </ul>
                 </div>
             </div>
