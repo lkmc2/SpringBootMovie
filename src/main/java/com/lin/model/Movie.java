@@ -18,7 +18,6 @@ public class Movie {
     @Column(name = "image_name")
     private String imageName; // 图片名
 
-
     private String name; // 电影名
 
     @Column(name = "publish_date")

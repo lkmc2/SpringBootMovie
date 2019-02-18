@@ -45,8 +45,8 @@
                         <li th:each="detail : ${newestDetailList}">
                             <span>
                                 <a th:href="|/movie/${detail.movieId}|" target="_blank"
-                                    th:title="${detail.websiteName} + ' ' + ${detail.info}"
-                                    th:text="${detail.websiteName} + ' ' + ${detail.info}">
+                                    th:title="${detail.websiteName} + '  ' + ${detail.info}"
+                                    th:text="${detail.websiteName} + '  ' + ${detail.info}">
                                 </a>
                             </span>
                         </li>
@@ -61,11 +61,14 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <li><span><a href="">流浪地球</a></span></li>
-                        <li><span><a href="">战狼2</a></span></li>
-                        <li><span><a href="">怦然心动</a></span></li>
-                        <li><span><a href="">飞驰人生</a></span></li>
-                        <li><span><a href="">白蛇传：缘起</a></span></li>
+                        <li th:each="movie : ${hotMovieList}">
+                            <span>
+                                <a th:href="|/movie/${movie.id}|" target="_blank"
+                                   th:title="${movie.name}"
+                                   th:text="${movie.name}">
+                                </a>
+                            </span>
+                        </li>
                     </ul>
                 </div>
             </div>

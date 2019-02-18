@@ -30,8 +30,10 @@ public class IndexController {
      */
     @GetMapping("/index")
     public ModelAndView login() {
-        // 热门电影列表
-        List<Movie> hotMovieList = movieService.getHotMovieList(1, 16);
+        // 首页32条热门电影列表
+        List<Movie> indexHotMovieList = movieService.getHotMovieList(1, 32);
+        // 侧边栏10条热门电影列表
+        List<Movie> hotMovieList = movieService.getHotMovieList(1, 10);
         // 最新电影动态列表
         List<MovieDetailVo> newestDetailList = movieDetailService.getNewestDetailList(1, 10);
 
@@ -39,7 +41,8 @@ public class IndexController {
         mv.addObject("title", "首页");
         mv.addObject("mainPage", "movie/indexMovie");
         mv.addObject("fragment", "indexMovie");
-        mv.addObject("newestIndexHotMovieList", hotMovieList);
+        mv.addObject("newestIndexHotMovieList", indexHotMovieList);
+        mv.addObject("hotMovieList", hotMovieList);
         mv.addObject("newestDetailList", newestDetailList);
         return mv;
     }
