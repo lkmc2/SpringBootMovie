@@ -26,6 +26,25 @@ public class MovieServiceImpl implements MovieService {
     private MovieMapperCustom movieMapperCustom;
 
     @Override
+    public List<Movie> getAllMovieList(Integer page, Integer pageSize) {
+        if (page == null) {
+            page = 1;
+        }
+        if (pageSize == null) {
+            pageSize = 10;
+        }
+
+        // 使用分页插件
+        PageHelper.startPage(page, pageSize);
+
+        // 创建查询条件（根据发布日期降序排列）
+        Example example = new Example(Movie.class);
+        example.setOrderByClause("publish_date desc");
+
+        return movieMapper.selectByExample(example);
+    }
+
+    @Override
     public List<Movie> getHotMovieList(Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
@@ -107,6 +126,11 @@ public class MovieServiceImpl implements MovieService {
         criteria.andLike("name", "%" + movieName + "%");
 
         return movieMapper.selectByExample(example);
+    }
+
+    @Override
+    public Integer getTotalCount() {
+        return movieMapper.selectCount(null);
     }
 
 }

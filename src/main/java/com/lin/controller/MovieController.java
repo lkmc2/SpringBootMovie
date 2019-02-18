@@ -3,6 +3,7 @@ package com.lin.controller;
 import com.lin.model.Movie;
 import com.lin.service.MovieDetailService;
 import com.lin.service.MovieService;
+import com.lin.utils.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Objects;
 
@@ -61,6 +61,22 @@ public class MovieController {
             mv.addObject("movie", movie);
             mv.addObject("total", movieList.size());
         }
+        return mv;
+    }
+
+    @GetMapping("/list/{page}")
+    public ModelAndView list(@PathVariable(value = "page", required = false) Integer page) {
+        // 分页查询电影列表，每页20条数据
+        List<Movie> movieList = movieService.getAllMovieList(page, 20);
+        // 所有记录条数
+        int total = movieService.getTotalCount();
+
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject("movieList", movieList);
+        mv.addObject("pageCode", PageUtils.generatePagination("/movie/list", total, page, 20));
+        mv.addObject("title", "电影列表");
+        mv.addObject("mainPage", "movie/movie_list");
+        mv.addObject("fragment", "movie_list");
         return mv;
     }
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--电影列表-->
+<div th:fragment="movie_list">
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="../../static/images/list_icon.png" th:src="@{/static/images/list_icon.png}" alt="电影列表">
+            电影列表
+        </div>
+
+        <div class="datas lImageDatas">
+            <ul class="imageUl">
+                <li class="imageLi" th:each="movie : ${movieList}">
+                    <a th:href="|/movie/${movie.id}|" target="_blank" th:title="${movie.name}">
+                        <img class="indexMovie" th:src="|/static/movieImage/${movie.imageName}|" alt="">
+                        <p th:text="${movie.name}"></p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div>
+        <nav>
+            <ul class="pagination pagination-sm" th:utext="${pageCode}"></ul>
+        </nav>
+    </div>
+</div>
+
+</body>
+</html>

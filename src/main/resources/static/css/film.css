@@ -36,6 +36,10 @@ body {
     height: 520px;
 }
 
+.data_list .lImageDatas {
+    height: 1300px;
+}
+
 .data_list .datas ul {
     list-style-type: none;
     padding-left: 15px;

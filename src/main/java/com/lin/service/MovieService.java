@@ -10,6 +10,14 @@ import java.util.List;
  */
 public interface MovieService {
     /**
+     * 分页查询所有电影列表
+     * @param page 当前页
+     * @param pageSize 每页条数
+     * @return 电影列表
+     */
+    List<Movie> getAllMovieList(Integer page, Integer pageSize);
+
+    /**
      * 分页查询热门电影列表
      * @param page 当前页
      * @param pageSize 每页条数
@@ -61,4 +69,10 @@ public interface MovieService {
      * @return 电影列表
      */
     List<Movie> queryMovieByName(String movieName, Integer page, Integer pageSize);
+
+    /**
+     * 获取所有记录条数
+     * @return 所有记录条数
+     */
+    Integer getTotalCount();
 }
