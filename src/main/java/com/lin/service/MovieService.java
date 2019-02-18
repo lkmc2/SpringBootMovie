@@ -45,4 +45,11 @@ public interface MovieService {
      * @return 下一部电影
      */
     Movie getNext(Integer id);
+
+    /**
+     * 生成含有n条电影的随机列表
+     * @param count 生成条数
+     * @return 随机电影列表
+     */
+    List<Movie> randomList(Integer count);
 }

@@ -38,8 +38,9 @@ public class MovieController {
         mv.addObject("movie", movie);
         mv.addObject("title", movie.getTitle());
         mv.addObject("pageCode", this.generateUpAndDownPageCode(movieService.getLast(id), movieService.getNext(id)));
-        mv.addObject("mainPage", "movie/detail");
         mv.addObject("movieDetailList", movieDetailService.getByMovieId(id));
+        mv.addObject("randomMovieList", movieService.randomList(8));
+        mv.addObject("mainPage", "movie/detail");
         mv.addObject("fragment", "detail");
         return mv;
     }

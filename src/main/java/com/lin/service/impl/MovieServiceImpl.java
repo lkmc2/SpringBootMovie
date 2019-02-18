@@ -2,10 +2,12 @@ package com.lin.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.lin.mapper.MovieMapper;
+import com.lin.mapper.MovieMapperCustom;
 import com.lin.model.Movie;
 import com.lin.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -19,6 +21,9 @@ public class MovieServiceImpl implements MovieService {
 
     @Autowired
     private MovieMapper movieMapper;
+
+    @Autowired
+    private MovieMapperCustom movieMapperCustom;
 
     @Override
     public List<Movie> getHotMovieList(Integer page, Integer pageSize) {
@@ -73,6 +78,14 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public Movie getNext(Integer id) {
         return movieMapper.selectByPrimaryKey(id + 1);
+    }
+
+    @Override
+    public List<Movie> randomList(Integer count) {
+        if (count == null) {
+            count = 10;
+        }
+        return movieMapperCustom.randomList(count);
     }
 
 }

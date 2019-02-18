@@ -32,6 +32,10 @@ body {
     height: 1084px;
 }
 
+.data_list .rImageDatas {
+    height: 520px;
+}
+
 .data_list .datas ul {
     list-style-type: none;
     padding-left: 15px;

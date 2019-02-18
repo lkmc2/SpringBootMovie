@@ -24,7 +24,7 @@
 
     <div class="data_list">
         <div class="data_list_title">
-            <img src="../../static/images/list_icon.png" th:src="@{/static/images/list_icon.png}" alt="电影详情信息">
+            <img src="../../static/images/list_icon.png" th:src="@{/static/images/list_icon.png}" alt="电影网站动态信息">
             电影网站动态信息列表
         </div>
 
@@ -51,6 +51,24 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="../../static/images/guess_icon.png" th:src="@{/static/images/guess_icon.png}" alt="猜你喜欢">
+            猜你喜欢
+        </div>
+
+        <div class="datas rImageDatas">
+            <ul class="imageUl">
+                <li class="imageLi" th:each="movie : ${randomMovieList}">
+                    <a th:href="|/movie/${movie.id}|" target="_blank" th:title="${movie.name}">
+                        <img class="indexMovie" th:src="|/static/movieImage/${movie.imageName}|" alt="">
+                        <p th:text="${movie.name}"></p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
