@@ -64,6 +64,11 @@ public class MovieController {
         return mv;
     }
 
+    /**
+     * 分页查询电影信息
+     * @param page 当前页数
+     * @return 电影信息展示页
+     */
     @GetMapping("/list/{page}")
     public ModelAndView list(@PathVariable(value = "page", required = false) Integer page) {
         // 分页查询电影列表，每页20条数据

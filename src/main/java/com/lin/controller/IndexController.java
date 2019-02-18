@@ -47,7 +47,7 @@ public class IndexController {
         // 最新电影动态列表
         List<MovieDetailVo> detailList = movieDetailService.getNewestDetailList(1, 10);
         // 最新网站列表
-        List<Website> websiteList = websiteService.newestWebSiteList(1, 10);
+        List<Website> websiteList = websiteService.getAllWebsiteList(1, 10);
         // 最新电影列表
         List<Movie> newestMovieList = movieService.newestMovieList(1, 10);
         // 友情链接列表
