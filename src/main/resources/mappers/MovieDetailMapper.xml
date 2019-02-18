@@ -7,8 +7,8 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="info" jdbcType="VARCHAR" property="info" />
-    <result column="film_id" jdbcType="INTEGER" property="filmId" />
-    <result column="web_site_id" jdbcType="INTEGER" property="webSiteId" />
+    <result column="movie_id" jdbcType="INTEGER" property="movieId" />
+    <result column="website_id" jdbcType="INTEGER" property="websiteId" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate" />
   </resultMap>

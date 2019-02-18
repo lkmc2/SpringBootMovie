@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.mapper.MovieDetailMapperCustom">
+    <resultMap id="BaseResultMap" type="com.lin.model.vo.MovieDetailVo">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="info" jdbcType="VARCHAR" property="info"/>
+        <result column="movie_id" jdbcType="INTEGER" property="movieId"/>
+        <result column="website_id" jdbcType="INTEGER" property="websiteId"/>
+        <result column="website_name" jdbcType="VARCHAR" property="websiteName"/>
+        <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="publish_date" jdbcType="TIMESTAMP" property="publishDate"/>
+    </resultMap>
+
+    <!--查询最新电影动态列表-->
+    <select id="getNewestDetailList" resultMap="BaseResultMap">
+        select
+               m.id,
+               m.info,
+               m.movie_id,
+               m.website_id,
+               w.name as website_name,
+               m.url,
+               m.publish_date
+        from movie_detail m
+        left join website w on m.website_id = w.id
+        order by m.publish_date desc
+    </select>
+
+</mapper>

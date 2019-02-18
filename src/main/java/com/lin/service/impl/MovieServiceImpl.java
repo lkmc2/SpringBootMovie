@@ -21,7 +21,7 @@ public class MovieServiceImpl implements MovieService {
     private MovieMapper movieMapper;
 
     @Override
-    public List<Movie> getHotMovie(Integer page, Integer pageSize) {
+    public List<Movie> getHotMovieList(Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
         }

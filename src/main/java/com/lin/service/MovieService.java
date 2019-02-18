@@ -15,5 +15,5 @@ public interface MovieService {
      * @param pageSize 每页条数
      * @return 电影列表
      */
-    List<Movie> getHotMovie(Integer page, Integer pageSize);
+    List<Movie> getHotMovieList(Integer page, Integer pageSize);
 }
