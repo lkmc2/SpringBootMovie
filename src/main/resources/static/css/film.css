@@ -68,3 +68,22 @@ body {
     width: 140px;
     height: 198px;
 }
+
+.data_list .film_title {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.data_list .film_publishDate {
+    text-align: center;
+}
+
+.data_list .film_content {
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+.data_list .film_last_and_next_page {
+    border-top: 1px dotted black;
+    padding: 10px;
+}
