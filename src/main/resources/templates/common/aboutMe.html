@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--关于本站页面-->
+<div th:fragment="aboutMe">
+    <div class="data_list">
+        <div class="data_list_title">
+            <img th:src="@{/static/images/about_icon.png}" alt="关于本站">
+            关于本站
+        </div>
+
+        <div class="datas" style="padding-top: 20px;padding-left: 10px;">
+            本站提供丰富的视频资源，只为让您满意！<br><br><br><br>
+            本项目主要以SpringBoot为架构核心；<br/><br/>
+            使用Mybatis作为数据访问对象层；<br/><br/>
+            使用Spring Security作为web安全框架；<br/><br/>
+            使用thymeleaf作为视图层模版引擎；<br/><br/>
+            前台页面采用Bootstrap，后台管理页面采用Easyui。<br/><br/>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -66,4 +66,17 @@ public class IndexController {
         return mv;
     }
 
+    /**
+     * 跳转到关于本站页
+     * @return 关于本站页
+     */
+    @GetMapping("/aboutMe")
+    public ModelAndView aboutMe() {
+        ModelAndView mv = new ModelAndView("index");
+        mv.addObject("title", "关于本站");
+        mv.addObject("mainPage", "common/aboutMe");
+        mv.addObject("fragment", "aboutMe");
+        return mv;
+    }
+
 }
