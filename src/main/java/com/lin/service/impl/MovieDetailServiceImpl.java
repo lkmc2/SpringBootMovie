@@ -31,7 +31,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
         // 使用分页插件
         PageHelper.startPage(page, pageSize);
 
-        return movieDetailMapperCustom.getNewestDetailList();
+        return movieDetailMapperCustom.getAllMovieDetailList();
     }
 
     @Override

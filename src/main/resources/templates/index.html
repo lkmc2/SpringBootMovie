@@ -42,7 +42,7 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <li th:each="detail : ${newestDetailList}">
+                        <li th:each="detail : ${application.newestDetailList}">
                             <span>
                                 <a th:href="|/movie/${detail.movieId}|" target="_blank"
                                     th:title="${detail.websiteName} + '  ' + ${detail.info}"
@@ -61,7 +61,7 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <li th:each="movie : ${hotMovieList}">
+                        <li th:each="movie : ${application.hotMovieList}">
                             <span>
                                 <a th:href="|/movie/${movie.id}|" target="_blank"
                                    th:title="${movie.name}"
@@ -80,7 +80,7 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <li th:each="website : ${newestWebSiteList}">
+                        <li th:each="website : ${application.newestWebSiteList}">
                             <span>
                                 <a th:href="${website.url}" target="_blank"
                                    th:title="${website.name}"
@@ -99,7 +99,7 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <li th:each="movie : ${newestMovieList}">
+                        <li th:each="movie : ${application.newestMovieList}">
                             <span>
                                 <a th:href="|/movie/${movie.id}|" target="_blank"
                                    th:title="${movie.name}"
@@ -118,7 +118,7 @@
                 </div>
                 <div class="datas">
                     <ul>
-                        <li th:each="link : ${friendlyLinkList}">
+                        <li th:each="link : ${application.friendlyLinkList}">
                             <span>
                                 <a th:href="${link.url}" target="_blank"
                                    th:title="${link.name}"

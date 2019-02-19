@@ -12,10 +12,10 @@ import java.util.List;
  */
 public interface MovieDetailMapperCustom extends MyMapper<MovieDetail> {
     /**
-     * 查询最新电影动态列表
+     * 查询所有电影动态列表
      * @return 最新电影动态列表
      */
-    List<MovieDetailVo> getNewestDetailList();
+    List<MovieDetailVo> getAllMovieDetailList();
 
     /**
      * 根据电影id获取电影详情信息

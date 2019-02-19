@@ -16,7 +16,7 @@
     </resultMap>
 
     <!--查询最新电影动态列表-->
-    <select id="getNewestDetailList" resultMap="BaseResultMap">
+    <select id="getAllMovieDetailList" resultMap="BaseResultMap">
         select
            m.id,
            m.info,
