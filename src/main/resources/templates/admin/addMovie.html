@@ -14,7 +14,7 @@
         function submitData() {
             // EasyUI无刷新提交
             $('#fm').form('submit', {
-                url: 'admin/movie/save',
+                url: '/admin/movie/save',
                 onSubmit: function () {
                     // 获取内容输入框中的内容
                     var content = CKEDITOR.instances.content.getData();

@@ -41,7 +41,7 @@ public class InitSystem implements ServletContextListener, ApplicationContextAwa
      * 加载数据到application缓存中
      * @param context servlet上下文
      */
-    private void loadData(ServletContext context) {
+    public void loadData(ServletContext context) {
         MovieService movieService = applicationContext.getBean(MovieService.class);
         MovieDetailService movieDetailService = applicationContext.getBean(MovieDetailService.class);
         WebsiteService websiteService = applicationContext.getBean(WebsiteService.class);

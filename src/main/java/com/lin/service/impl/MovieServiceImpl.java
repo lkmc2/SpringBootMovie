@@ -132,4 +132,9 @@ public class MovieServiceImpl implements MovieService {
         return movieMapper.selectCount(null);
     }
 
+    @Override
+    public boolean save(Movie movie) {
+        return movieMapper.insertSelective(movie) >= 1;
+    }
+
 }

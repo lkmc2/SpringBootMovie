@@ -75,4 +75,10 @@ public interface MovieService {
      * @return 所有记录条数
      */
     Integer getTotalCount();
+
+    /**
+     * 保存电影到数据库
+     * @param movie 电影
+     */
+    boolean save(Movie movie);
 }
