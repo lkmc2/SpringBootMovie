@@ -37,4 +37,13 @@ public class IndexController {
         return mv;
     }
 
+    /**
+     * 跳转到后台管理页面
+     * @return 后台管理页面
+     */
+    @GetMapping("/admin")
+    public String toAdmin() {
+        return "admin/main";
+    }
+
 }
