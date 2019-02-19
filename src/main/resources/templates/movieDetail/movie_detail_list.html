@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!--电影动态列表-->
+<div th:fragment="movie_detail_list">
+    <div class="data_list">
+        <div class="data_list_title">
+            <img src="../../static/images/list_icon.png" th:src="@{/static/images/list_icon.png}" alt="电影列表">
+            电影网站动态信息列表
+        </div>
+
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>标号</th>
+                        <th>发布日期</th>
+                        <th>动态信息</th>
+                        <th>来源于</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="detail,stat : ${movieDetailList}">
+                        <th scope="row" th:text="${stat.index + 1}"></th>
+                        <td th:text="${#dates.format(detail.publishDate,'yyyy-MM-dd')}"></td>
+                        <td>
+                            <a th:href="${detail.url}" th:text="${detail.info}" th:title="${detail.info}" target="_blank"></a>
+                        </td>
+                        <td><a th:href="${detail.websiteUrl}" th:text="${detail.websiteName}"
+                                th:title="${detail.websiteName}" target="_blank"></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <nav>
+            <ul class="pagination pagination-sm" th:utext="${pageCode}"></ul>
+        </nav>
+    </div>
+</div>
+
+</body>
+</html>

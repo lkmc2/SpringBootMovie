@@ -20,7 +20,7 @@ public class MovieDetailServiceImpl implements MovieDetailService {
     private MovieDetailMapperCustom movieDetailMapperCustom;
 
     @Override
-    public List<MovieDetailVo> getNewestDetailList(Integer page, Integer pageSize) {
+    public List<MovieDetailVo> getAllMovieDetailList(Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
         }
@@ -37,6 +37,11 @@ public class MovieDetailServiceImpl implements MovieDetailService {
     @Override
     public List<MovieDetailVo> getByMovieId(Integer movieId) {
         return movieDetailMapperCustom.getByMovieId(movieId);
+    }
+
+    @Override
+    public int getTotalCount() {
+        return movieDetailMapperCustom.selectCount(null);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.lin.service;
 
+import com.lin.model.MovieDetail;
 import com.lin.model.vo.MovieDetailVo;
 
 import java.util.List;
@@ -10,12 +11,12 @@ import java.util.List;
  */
 public interface MovieDetailService {
     /**
-     * 分页查询最新电影动态列表
+     * 分页查询所有电影动态列表
      * @param page 当前页
      * @param pageSize 每页条数
      * @return 电影动态列表
      */
-    List<MovieDetailVo> getNewestDetailList(Integer page, Integer pageSize);
+    List<MovieDetailVo> getAllMovieDetailList(Integer page, Integer pageSize);
 
     /**
      * 根据电影id获取电影详情信息
@@ -23,4 +24,10 @@ public interface MovieDetailService {
      * @return 电影详情信息列表
      */
     List<MovieDetailVo> getByMovieId(Integer movieId);
+
+    /**
+     * 获取所有记录条数
+     * @return 所有记录条数
+     */
+    int getTotalCount();
 }
