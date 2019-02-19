@@ -3,7 +3,6 @@ package com.lin.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.lin.mapper.FriendlyLinkMapper;
 import com.lin.model.FriendlyLink;
-import com.lin.model.Movie;
 import com.lin.service.FriendlyLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

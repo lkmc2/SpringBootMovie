@@ -7,7 +7,6 @@ import com.lin.model.Movie;
 import com.lin.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
