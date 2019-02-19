@@ -3,15 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <title>后台管理界面 - 倾心电影网</title>
-    <link href="../../static/jquery-easyui-1.3.3/themes/default/easyui.css" rel="stylesheet" type="text/css" />
-    <link href="../../static/jquery-easyui-1.3.3/themes/icon.css" rel="stylesheet" type="text/css" />
-    <script src="../../static/jquery-easyui-1.3.3/jquery.min.js" type="text/javascript"></script>
-    <script src="../../static/jquery-easyui-1.3.3/jquery.easyui.min.js" type="text/javascript"></script>
-    <script src="../../static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
+    <link href="../../static/jquery-easyui-1.3.3/themes/default/easyui.css" th:href="@{/static/jquery-easyui-1.3.3/themes/default/easyui.css}" rel="stylesheet" type="text/css" />
+    <link href="../../static/jquery-easyui-1.3.3/themes/icon.css" th:href="@{/static/jquery-easyui-1.3.3/themes/icon.css}" rel="stylesheet" type="text/css" />
+    <script src="../../static/jquery-easyui-1.3.3/jquery.min.js" th:src="@{/static/jquery-easyui-1.3.3/jquery.min.js}" type="text/javascript"></script>
+    <script src="../../static/jquery-easyui-1.3.3/jquery.easyui.min.js" th:src="@{/static/jquery-easyui-1.3.3/jquery.easyui.min.js}" type="text/javascript"></script>
+    <script src="../../static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js" th:src="@{/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js}" type="text/javascript"></script>
+    <script>
+        /**
+         * 打开Tab
+         * @param text 标签标题
+         * @param url 标签地址
+         * @param iconCls 标题上的图标样式
+         */
+        function openTab(text, url, iconCls) {
+            if ($('#tabs').tabs('exists', text)) {
+                // 如果指定标题的面板已存在，选择该标签的面板
+                $('#tabs').tabs('select', text);
+            } else {
+                // 指定标签的面板未存在，创建新面板
+                var content = "<iframe frameborder=0 scrolling='auto' style='width:100%;height:99.6%' src='/admin/'" +  url + "></iframe>";
+                $('#tabs').tabs('add', {
+                    title: text, // 标签标题
+                    iconCls: iconCls, // 标题上的图标样式
+                    closable: true, // 标签可关闭
+                    content: content // 标签对应的面板内容
+                });
+            }
+        }
+
+        // 退出登陆
+        function logout() {
+            $.messager.confirm('系统提示', '您确定要退出系统吗？', function (r) {
+                if (r) {
+                    window.location.href = '/logout';
+                }
+            });
+        }
+    </script>
 </head>
-<body>
 
+<body class="easyui-layout">
 
+<div region="north" style="height: 86px;background-color: #E0ECFF">
+    <table style="padding: 5px" width="100%">
+        <tr>
+            <td width="50%">
+                <img alt="logo" src="../../static/images/logo.png" th:src="@{/static/images/logo.png}"/>
+            </td>
+            <td valign="bottom" align="right" width="50%">
+                <font size="3">&nbsp;&nbsp;<strong>欢迎：</strong><span th:text="${#httpServletRequest.remoteUser}"></span></font>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div region="center">
+    <div class="easyui-tabs" fit="true" border="false" id="tabs">
+        <div title="首页" data-options="iconCls:'icon-home'">
+            <div align="center" style="padding-top: 100px"><font color="black" size="8">欢迎使用</font></div>
+        </div>
+    </div>
+</div>
+
+<div region="west" style="width: 200px" title="导航菜单" split="true">
+    <div style="padding-top: 10px;padding-left: 10px;">
+        <a href="javascript:openTab('添加电影信息','addFilm.html','icon-addFilm')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-addFilm'" style="width: 150px;">添加电影信息</a>
+        <a href="javascript:openTab('电影动态管理','infoManage.html','icon-dynamic')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-dynamic'" style="width: 150px;">电影动态管理</a>
+        <a href="javascript:openTab('电影信息管理','filmManage.html','icon-film')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-film'" style="width: 150px;">电影信息管理</a>
+        <a href="javascript:openTab('网址信息管理','webSiteManage.html','icon-website')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-website'" style="width: 150px;">网址信息管理</a>
+        <a href="javascript:openTab('友情链接管理','linkManage.html','icon-link')" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-link'" style="width: 150px;">友情链接管理</a>
+        <a href="javascript:logout()" class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-exit'" style="width: 150px;">安全退出</a>
+    </div>
+</div>
+
+<div region="south" style="height: 30px;padding: 5px" align="center">
+    Copyright © 2019 倾心电影网
+</div>
 
 </body>
+
 </html>
