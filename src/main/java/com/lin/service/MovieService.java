@@ -81,4 +81,20 @@ public interface MovieService {
      * @param movie 电影
      */
     boolean save(Movie movie);
+
+    /**
+     * 根据条件分页查询电影
+     * @param movie 电影
+     * @param page 当前页数
+     * @param pageSize 每页条数
+     * @return 电影列表
+     */
+    List<Movie> list(Movie movie, Integer page, Integer pageSize);
+
+    /**
+     * 查询符合条件的电影数
+     * @param movie 电影
+     * @return 符合条件的电影数
+     */
+    int queryTotalCount(Movie movie);
 }

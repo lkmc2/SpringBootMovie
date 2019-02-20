@@ -16,4 +16,18 @@ public interface MovieMapperCustom extends MyMapper<Movie> {
      * @return 随机电影列表
      */
     List<Movie> randomList(Integer count);
+
+    /**
+     * 根据条件分页查询电影
+     * @param movie 电影
+     * @return 电影列表
+     */
+    List<Movie> list(Movie movie);
+
+    /**
+     * 查询符合条件的电影数
+     * @param movie 电影
+     * @return 符合条件的电影数
+     */
+    int queryTotalCount(Movie movie);
 }

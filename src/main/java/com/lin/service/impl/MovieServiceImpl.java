@@ -137,4 +137,16 @@ public class MovieServiceImpl implements MovieService {
         return movieMapper.insertSelective(movie) >= 1;
     }
 
+    @Override
+    public List<Movie> list(Movie movie, Integer page, Integer pageSize) {
+        // 进行分页
+        PageHelper.startPage(page, pageSize);
+        return movieMapperCustom.list(movie);
+    }
+
+    @Override
+    public int queryTotalCount(Movie movie) {
+        return movieMapperCustom.queryTotalCount(movie);
+    }
+
 }

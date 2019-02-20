@@ -29,4 +29,40 @@
         limit #{count}
     </select>
 
+    <!--根据条件分页查询电影-->
+    <select id="list" resultMap="BaseResultMap">
+        select
+               id,
+               hot,
+               image_name,
+               name,
+               publish_date,
+               title,
+               content
+        from movie
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="hot != null and hot == 1">
+                and hot = 1
+            </if>
+        </where>
+    </select>
+
+    <!--查询符合条件的电影数-->
+    <select id="queryTotalCount" resultType="int">
+        select count(1)
+        from movie
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="hot != null and hot == 1">
+                and hot = 1
+            </if>
+        </where>
+    </select>
+
+
 </mapper>

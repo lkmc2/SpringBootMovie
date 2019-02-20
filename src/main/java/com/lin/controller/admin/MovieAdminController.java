@@ -10,10 +10,7 @@ import com.lin.utils.DateUtils;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,6 +40,28 @@ public class MovieAdminController {
 
     @Value("${imageFilePath}")
     private String imageFilePath;
+
+    /**
+     * 分页查询电影
+     * @param movie 电影
+     * @param page 当前页数
+     * @param rows 每页条数
+     * @return 查询结果
+     */
+    @PostMapping("/list")
+    public Map<String, Object> queryMovie(Movie movie,
+                                          @RequestParam(value = "page", required = false) Integer page,
+                                          @RequestParam(value = "rows", required = false) Integer rows) {
+        // 根据电影名查询电影列表
+        List<Movie> movieList = movieService.list(movie, page, rows);
+        // 根据电影名查询符合条件的电影数
+        int total = movieService.queryTotalCount(movie);
+
+        HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap.put("rows", movieList);
+        resultMap.put("total", total);
+        return resultMap;
+    }
 
     /**
      * 保存电影到数据库

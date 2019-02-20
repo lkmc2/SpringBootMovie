@@ -37,7 +37,7 @@ public class WebsiteController {
 
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("websiteList", websiteList);
-        mv.addObject("pageCode", PageUtils.generatePagination("/website/list", total, page, 20));
+        mv.addObject("pageCode", PageUtils.generatePagination("/website/queryMovie", total, page, 20));
         mv.addObject("title", "电影网站列表");
         mv.addObject("mainPage", "website/website_list");
         mv.addObject("fragment", "website_list");

@@ -58,9 +58,9 @@ a
 
 ol,ul,dl
 {
-	/* IE7: reset rtl list margin. (#7334) */
+	/* IE7: reset rtl queryMovie margin. (#7334) */
 	*margin-right: 0px;
-	/* preserved spaces for list items with text direction other than the list. (#6249,#8049)*/
+	/* preserved spaces for queryMovie items with text direction other than the queryMovie. (#6249,#8049)*/
 	padding: 0 40px;
 }
 
