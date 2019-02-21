@@ -63,7 +63,12 @@ public class WebsiteServiceImpl implements WebsiteService {
 
     @Override
     public boolean save(Website website) {
-        return websiteMapper.insertSelective(website) >= 1;
+        // 没有id时插入数据
+        if (website.getId() == null) {
+            return websiteMapper.insertSelective(website) >= 1;
+        }
+        // 更新数据
+        return websiteMapper.updateByPrimaryKeySelective(website) >= 1;
     }
 
 }

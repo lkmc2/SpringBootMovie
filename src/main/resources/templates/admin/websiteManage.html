@@ -21,10 +21,27 @@
         var url;
 
         // 打开添加电影网站的对话框
-        function openWebsiteAddTab() {
+        function openWebsiteAddDialog() {
             // 打开对话框
             $('#dlg').dialog('open').dialog('setTitle', '添加网站地址信息');
             url = '/admin/website/save';
+        }
+
+        // 打开修改电影网站的对话框
+        function openWebsiteModifyDialog() {
+            // 获取第一个选中的行
+            var selectedRow = $('#dg').datagrid('getSelected');
+            if (selectedRow === null) {
+                $.messager.alert('系统提示', '请选择一个要修改的电影网站！');
+                return;
+            }
+
+            // 打开对话框
+            $('#dlg').dialog('open').dialog('setTitle', '编辑电影网站地址信息');
+            // 单独刷新被选中行的数据
+            $('#fm').form('load', selectedRow);
+
+            url = '/admin/website/save?id=' + selectedRow.id;
         }
 
         // 保存电影网站
@@ -85,8 +102,8 @@
 
 <div id="tb">
     <div style="margin-top: 5px; margin-bottom: 5px;">
-        <a href="javascript:openWebsiteAddTab()" class="easyui-linkbutton" iconCls="icon-edit">添加</a>
-        <a href="javascript:openWebsiteModifyTab()" class="easyui-linkbutton" iconCls="icon-edit">修改</a>
+        <a href="javascript:openWebsiteAddDialog()" class="easyui-linkbutton" iconCls="icon-edit">添加</a>
+        <a href="javascript:openWebsiteModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit">修改</a>
         <a href="javascript:deleteWebsite()" class="easyui-linkbutton" iconCls="icon-remove">删除</a>
         &nbsp;&nbsp;电影网站名称：&nbsp;
         <input type="text" id="s_name" size="20" onkeydown="if (event.keyCode === 13) searchWebsite()"/>&nbsp;&nbsp;
