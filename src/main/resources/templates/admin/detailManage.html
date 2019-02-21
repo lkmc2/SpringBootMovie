@@ -11,33 +11,42 @@
     <script>
         // 格式化电影名
         function formatMovieName(val, row) {
-            return row.movie.name;
+            return row.movieName;
         }
 
         // 格式化网站名
         function formatWebsiteName(val, row) {
-            return row.website.name + '&nbsp;(' + row.website.url + ')';
+            return row.websiteName + '&nbsp;(' + row.websiteUrl + ')';
         }
 
-        $(document).ready(function () {
-            // 电影自动搜索（填充下拉框的数据）
-            $('#movie').combobox({
-                mode: 'remote', // 从服务器获取数据
-                url: '/admin/movie/comboList',
-                validField: 'id', // 绑定到value属性上的数据名称
-                textField: 'name', // 绑定到text属性上的数据名称
-                delay: 100
-            });
+        var url;
 
-            // 网站自动搜索（自动填充下拉框的数据）
-            $('#website').combobox({
-                mode: 'remote', // 从服务器获取数据
-                url: '/admin/website/comboList',
-                validField: 'id', // 绑定到value属性上的数据名称
-                textField: 'url', // 绑定到text属性上的数据名称
-                delay: 100
-            });
-        })
+        // 打开添加电影动态的对话框
+        function openAddMovieDetailDialog() {
+            // 打开对话框
+            $('#dlg').dialog('open').dialog('setTitle', '添加网站动态信息');
+            url = '/admin/movieDetail/save';
+        }
+
+        // $(document).ready(function () {
+        //     // 电影自动搜索（填充下拉框的数据）
+        //     $('#movie').combobox({
+        //         mode: 'remote', // 从服务器获取数据
+        //         url: '/admin/movie/comboList',
+        //         validField: 'id', // 绑定到value属性上的数据名称
+        //         textField: 'name', // 绑定到text属性上的数据名称
+        //         delay: 100
+        //     });
+        //
+        //     // 网站自动搜索（自动填充下拉框的数据）
+        //     $('#website').combobox({
+        //         mode: 'remote', // 从服务器获取数据
+        //         url: '/admin/website/comboList',
+        //         validField: 'id', // 绑定到value属性上的数据名称
+        //         textField: 'url', // 绑定到text属性上的数据名称
+        //         delay: 100
+        //     });
+        // })
     </script>
 </head>
 
@@ -50,7 +59,7 @@
         <tr>
             <th field="cb" checkbox="true" align="center"></th>
             <th field="id" width="20" align="center">编号</th>
-            <th field="movieName" width="100" align="center" formatter="formatMovieName">电影名称</th>
+            <!--<th field="movieName" width="100" align="center" formatter="formatMovieName">电影名称</th>-->
             <th field="websiteName" width="200" align="center" formatter="formatWebsiteName">网站名称</th>
             <th field="info" width="300" align="center">动态信息</th>
             <th field="url" width="150" align="center">具体地址</th>
@@ -61,7 +70,7 @@
 
 <div id="tb">
     <div>
-        <a href="javascript:openAddMovieDetailTab()" class="easyui-linkbutton" iconCls="icon-edit">添加</a>
+        <a href="javascript:openAddMovieDetailDialog()" class="easyui-linkbutton" iconCls="icon-edit">添加</a>
         <a href="javascript:deleteMovieDetail()" class="easyui-linkbutton" iconCls="icon-remove">删除</a>
         &nbsp;&nbsp;电影动态信息：&nbsp;
         <input type="text" id="s_movieDetail" size="20" onkeydown="if (event.keyCode === 13) searchMovieDetail()"/>&nbsp;&nbsp;
@@ -70,7 +79,7 @@
 </div>
 
 <div id="dlg" class="easyui-dialog" style="width: 500px; height: 230px; padding: 10px 20px"
-     close="true" buttons="#dlg-buttons">
+     closed="true" buttons="#dlg-buttons">
 
     <form id="fm" method="post">
         <table cellspacing="8px">
