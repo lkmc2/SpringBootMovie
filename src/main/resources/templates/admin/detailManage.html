@@ -9,6 +9,14 @@
     <script src="../../static/jquery-easyui-1.3.3/jquery.easyui.min.js" th:src="@{/static/jquery-easyui-1.3.3/jquery.easyui.min.js}" type="text/javascript"></script>
     <script src="../../static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js" th:src="@{/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js}" type="text/javascript"></script>
     <script>
+        // 搜索电影动态
+        function searchMovieDetail() {
+            // 用搜索框的值（参数为info）传给服务器，重新加载表格
+            $('#dg').datagrid('load', {
+                'info': $('#s_movieDetail').val()
+            });
+        }
+
         // 格式化电影名
         function formatMovieName(val, row) {
             return row.movieName;
@@ -47,7 +55,7 @@
 
                     if (res.success) {
                         $.messager.alert('系统提示', '保存成功！');
-                        // 重置输入框的值
+                        // 重置新增电影动态对话的输入框的值
                         resetValue();
                         // 关闭对话框
                         $('#dlg').dialog('close');
@@ -60,7 +68,14 @@
             });
         }
 
-        // 重置输入框的值
+        // 关闭添加电影详情对话框
+        function closeMovieDetailDialog() {
+            $('#dlg').dialog('close');
+            // 重置新增电影动态对话的输入框的值
+            resetValue();
+        }
+
+        // 重置新增电影动态对话的输入框的值
         function resetValue() {
             // 设置下拉的值为空
             $('#movie').combobox('setValue', '');
@@ -100,12 +115,12 @@
     <thead>
         <tr>
             <th field="cb" checkbox="true" align="center"></th>
-            <th field="id" width="20" align="center">编号</th>
+            <th field="id" width="30" align="center">编号</th>
             <th field="movieName" width="100" align="center" formatter="formatMovieName">电影名称</th>
             <th field="websiteName" width="200" align="center" formatter="formatWebsiteName">网站名称</th>
             <th field="info" width="300" align="center">动态信息</th>
-            <th field="url" width="150" align="center">具体地址</th>
-            <th field="publishDate" width="80" align="center" formatter="formatTime">发布日期</th>
+            <th field="url" width="200" align="center">具体地址</th>
+            <th field="publishDate" width="90" align="center" formatter="formatTime">发布日期</th>
         </tr>
     </thead>
 </table>
