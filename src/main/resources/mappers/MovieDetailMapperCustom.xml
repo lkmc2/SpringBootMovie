@@ -46,4 +46,35 @@
         where m.movie_id = #{movieId}
     </select>
 
+    <!--根据条件分页查询电影-->
+    <select id="list" resultMap="BaseResultMap">
+        select
+            m.id,
+            m.info,
+            m.movie_id,
+            m.website_id,
+            w.name as website_name,
+            w.url as website_url,
+            m.url,
+            m.publish_date
+        from movie_detail m
+        left join website w on m.website_id = w.id
+        <where>
+            <if test="info != null and info != ''">
+                and info like concat('%', #{info}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!--查询符合条件的电影数-->
+    <select id="queryTotalCount" resultType="int">
+        select count(1)
+        from movie_detail
+        <where>
+            <if test="info != null and info != ''">
+                and info like concat('%', #{info}, '%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

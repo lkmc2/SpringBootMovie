@@ -1,7 +1,9 @@
 package com.lin.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.lin.mapper.MovieDetailMapper;
 import com.lin.mapper.MovieDetailMapperCustom;
+import com.lin.model.MovieDetail;
 import com.lin.model.vo.MovieDetailVo;
 import com.lin.service.MovieDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ import java.util.List;
  */
 @Service
 public class MovieDetailServiceImpl implements MovieDetailService {
+
+    @Autowired
+    private MovieDetailMapper movieDetailMapper;
 
     @Autowired
     private MovieDetailMapperCustom movieDetailMapperCustom;
@@ -43,5 +48,23 @@ public class MovieDetailServiceImpl implements MovieDetailService {
     public int getTotalCount() {
         return movieDetailMapperCustom.selectCount(null);
     }
+
+    @Override
+    public List<MovieDetailVo> list(MovieDetail movieDetail, Integer page, Integer pageSize) {
+        // 进行分页
+        PageHelper.startPage(page, pageSize);
+        return movieDetailMapperCustom.list(movieDetail);
+    }
+
+    @Override
+    public int queryTotalCount(MovieDetail movieDetail) {
+        return movieDetailMapperCustom.queryTotalCount(movieDetail);
+    }
+
+    @Override
+    public boolean save(MovieDetail movieDetail) {
+        return movieDetailMapper.insert(movieDetail) >= 1;
+    }
+
 
 }

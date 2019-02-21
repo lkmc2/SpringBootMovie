@@ -8,6 +8,7 @@ import com.lin.service.MovieService;
 import com.lin.utils.DateUtils;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -143,6 +144,22 @@ public class MovieAdminController {
     @PostMapping("/findById")
     public Movie findById(Integer id) {
         return movieService.findById(id);
+    }
+
+    /**
+     * 下拉框模糊查询
+     * @param q EasyUI传来的查询参数（电影名）
+     * @return 符合条件的
+     */
+    @PostMapping("/comboList")
+    public List<Movie> comboList(String q) {
+        if (StringUtils.isEmpty(q)) {
+            return null;
+        }
+        Movie movie = new Movie();
+        movie.setName(q);
+        // 根据条件分页查询电影
+        return movieService.list(movie, 1, 30);
     }
 
 }

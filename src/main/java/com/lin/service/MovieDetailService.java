@@ -30,4 +30,27 @@ public interface MovieDetailService {
      * @return 所有记录条数
      */
     int getTotalCount();
+
+    /**
+     * 分页查询电影动态
+     * @param movieDetail 电影动态
+     * @param page 当前页数
+     * @param pageSize 每页条数
+     * @return 电影动态列表
+     */
+    List<MovieDetailVo> list(MovieDetail movieDetail, Integer page, Integer pageSize);
+
+    /**
+     * 根据电影名查询符合条件的电影动态数
+     * @param movieDetail 电影动态
+     * @return 符合条件的电影动态数
+     */
+    int queryTotalCount(MovieDetail movieDetail);
+
+    /**
+     * 保存电影动态
+     * @param movieDetail 电影动态
+     * @return 是否保存成功
+     */
+    boolean save(MovieDetail movieDetail);
 }
