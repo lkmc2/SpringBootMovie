@@ -19,6 +19,12 @@
             return row.websiteName + '&nbsp;(' + row.websiteUrl + ')';
         }
 
+        // 格式化时间
+        function formatTime(val, row) {
+            var time = row.publishDate;
+            return time.substr(0, 10) + ' ' + time.substr(11, 8);
+        }
+
         var url;
 
         // 打开添加电影动态的对话框
@@ -63,7 +69,7 @@
             <th field="websiteName" width="200" align="center" formatter="formatWebsiteName">网站名称</th>
             <th field="info" width="300" align="center">动态信息</th>
             <th field="url" width="150" align="center">具体地址</th>
-            <th field="publishDate" width="80" align="center">发布日期</th>
+            <th field="publishDate" width="80" align="center" formatter="formatTime">发布日期</th>
         </tr>
     </thead>
 </table>

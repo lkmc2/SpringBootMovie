@@ -60,6 +60,12 @@
             return "不是";
         }
 
+        // 格式化时间
+        function formatTime(val, row) {
+            var time = row.publishDate;
+            return time.substr(0, 10) + ' ' + time.substr(11, 8);
+        }
+
         // 打开修改电影信息的Tab
         function openMovieModifyTab() {
             // 获取第一个选中的行
@@ -96,7 +102,7 @@
             <th field="name" width="100" align="center">电影名称</th>
             <th field="title" width="200" align="center">帖子标题</th>
             <th field="hot" width="50" align="center" formatter="formatHot">热门？</th>
-            <th field="publishDate" width="150" align="center">发布日期</th>
+            <th field="publishDate" width="150" align="center" formatter="formatTime">发布日期</th>
         </tr>
     </thead>
 </table>
