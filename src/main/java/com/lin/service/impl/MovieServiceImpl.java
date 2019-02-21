@@ -149,4 +149,9 @@ public class MovieServiceImpl implements MovieService {
         return movieMapperCustom.queryTotalCount(movie);
     }
 
+    @Override
+    public boolean deleteMovie(int movieId) {
+        return movieMapper.deleteByPrimaryKey(movieId) >= 1;
+    }
+
 }

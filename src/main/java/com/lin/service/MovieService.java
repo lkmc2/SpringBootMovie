@@ -97,4 +97,11 @@ public interface MovieService {
      * @return 符合条件的电影数
      */
     int queryTotalCount(Movie movie);
+
+    /**
+     * 根据id删除电影
+     * @param movieId 电影id
+     * @return 是否删除成功
+     */
+    boolean deleteMovie(int movieId);
 }

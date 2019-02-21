@@ -100,4 +100,39 @@ public class MovieAdminController {
         return resultMap;
     }
 
+    /**
+     * 删除电影信息
+     * @param ids 多个电影id
+     * @return 执行结果
+     */
+    @PostMapping("/delete")
+    public Map<String, Object> delete(@RequestParam("ids") String ids, HttpServletRequest request) {
+        String[] idStr = ids.split(",");
+        // 是否删除成功
+        boolean isDeleteSuccess = true;
+
+        for (String id : idStr) {
+            int movieId = Integer.parseInt(id);
+
+            // 当电影被电影详情表引用时，不删除该电影
+            if (movieDetailService.getByMovieId(movieId).size() > 0) {
+                isDeleteSuccess = false;
+            } else {
+                // 删除指定id的电影
+                movieService.deleteMovie(movieId);
+            }
+        }
+        // 重新加载全局电影信息
+        initSystem.loadData(request.getServletContext());
+
+        Map<String, Object> resultMap = new HashMap<>();
+        if (isDeleteSuccess) {
+            resultMap.put("success", true);
+        } else {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "电影动态信息存在电影信息，不能删除！");
+        }
+        return resultMap;
+    }
+
 }
