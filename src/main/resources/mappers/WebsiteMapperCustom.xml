@@ -27,4 +27,18 @@
       </where>
   </select>
 
+    <!--查询符合条件的电影网站数-->
+    <select id="queryTotalCount" resultType="int">
+        select count(1)
+        from website
+        <where>
+            <if test="name != null and name != ''">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="url != null and url != ''">
+                and url like concat('%', #{url}, '%')
+            </if>
+        </where>
+    </select>
+
 </mapper>

@@ -16,4 +16,11 @@ public interface WebsiteMapperCustom extends MyMapper<Website> {
      * @return 符合条件的网站列表
      */
     List<Website> list(Website website);
+
+    /**
+     * 查询符合条件的电影网站数
+     * @param website 电影网站
+     * @return 符合条件的电影网站数
+     */
+    int queryTotalCount(Website website);
 }

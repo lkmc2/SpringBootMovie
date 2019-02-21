@@ -56,4 +56,9 @@ public class WebsiteServiceImpl implements WebsiteService {
         return websiteMapperCustom.list(website);
     }
 
+    @Override
+    public int queryTotalCount(Website website) {
+        return websiteMapperCustom.queryTotalCount(website);
+    }
+
 }

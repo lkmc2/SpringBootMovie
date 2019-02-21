@@ -1,11 +1,7 @@
 package com.lin.controller.admin;
 
 import com.lin.init.InitSystem;
-import com.lin.model.Movie;
-import com.lin.model.MovieDetail;
 import com.lin.model.Website;
-import com.lin.model.vo.MovieDetailVo;
-import com.lin.service.MovieDetailService;
 import com.lin.service.WebsiteService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.jws.WebService;
-import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +33,28 @@ public class WebsiteAdminController {
     private String imageFilePath;
 
     /**
+     * 分页查询电影网站
+     * @param website 电影网站
+     * @param page 当前页数
+     * @param rows 每页条数
+     * @return 查询结果
+     */
+    @PostMapping("/list")
+    public Map<String, Object> queryMovieDetail(Website website,
+                                                @RequestParam(value = "page", required = false) Integer page,
+                                                @RequestParam(value = "rows", required = false) Integer rows) {
+        // 根据电影名查询电影网站列表
+        List<Website> movieList = websiteService.list(website, page, rows);
+        // 查询符合条件的电影网站数
+        int total = websiteService.queryTotalCount(website);
+
+        HashMap<String, Object> resultMap = new HashMap<>();
+        resultMap.put("rows", movieList);
+        resultMap.put("total", total);
+        return resultMap;
+    }
+
+    /**
      * 网站下拉框模糊查询
      * @param q EasyUI传来的查询参数（网站地址）
      * @return 符合条件的网站列表
@@ -55,28 +70,6 @@ public class WebsiteAdminController {
         // 根据条件分页查询电影
         return websiteService.list(website, 1, 20);
     }
-
-//    /**
-//     * 分页查询电影动态
-//     * @param movieDetail 电影动态
-//     * @param page 当前页数
-//     * @param rows 每页条数
-//     * @return 查询结果
-//     */
-//    @PostMapping("/list")
-//    public Map<String, Object> queryMovieDetail(MovieDetail movieDetail,
-//                                                @RequestParam(value = "page", required = false) Integer page,
-//                                                @RequestParam(value = "rows", required = false) Integer rows) {
-//        // 根据电影名查询电影列表
-//        List<MovieDetailVo> movieList = movieDetailService.list(movieDetail, page, rows);
-//        // 根据电影名查询符合条件的电影动态数
-//        int total = movieDetailService.queryTotalCount(movieDetail);
-//
-//        HashMap<String, Object> resultMap = new HashMap<>();
-//        resultMap.put("rows", movieList);
-//        resultMap.put("total", total);
-//        return resultMap;
-//    }
 
 //    /**
 //     * 保存电影动态到数据库
