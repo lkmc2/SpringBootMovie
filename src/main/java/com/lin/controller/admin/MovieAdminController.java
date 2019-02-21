@@ -135,4 +135,14 @@ public class MovieAdminController {
         return resultMap;
     }
 
+    /**
+     * 根据id查询电影
+     * @param id 电影id
+     * @return 对应的电影
+     */
+    @PostMapping("/findById")
+    public Movie findById(Integer id) {
+        return movieService.findById(id);
+    }
+
 }

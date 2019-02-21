@@ -154,4 +154,9 @@ public class MovieServiceImpl implements MovieService {
         return movieMapper.deleteByPrimaryKey(movieId) >= 1;
     }
 
+    @Override
+    public Movie findById(Integer movieId) {
+        return movieMapper.selectByPrimaryKey(movieId);
+    }
+
 }

@@ -16,12 +16,98 @@
 
 <body style="margin: 10px;">
 
-<div id="p" class="easyui-panel">
-    nothing
+<div id="p" class="easyui-panel" title="修改电影" style="padding: 10px">
+    <form id="fm" method="post" enctype="multipart/form-data">
+        <table cellspacing="20px">
+            <tr>
+                <td width="80px">电影名称：</td>
+                <td>
+                    <input type="text" id="name" name="name" style="width: 400px;" class="easyui-validatebox" required="required">
+                </td>
+            </tr>
+            <tr>
+                <td width="80px">标题：</td>
+                <td>
+                    <input type="text" id="title" name="title" style="width: 400px;" class="easyui-validatebox" required="required">
+                </td>
+            </tr>
+            <tr>
+                <td width="80px">电影图片：</td>
+                <td>
+                    <input type="hidden" id="imageName" name="imageName">
+                    <input type="file" id="imageFile" name="imageFile">
+                </td>
+            </tr>
+            <tr>
+                <td width="80px">设置热门：</td>
+                <td>
+                    <input type="radio" id="yes" value="1" name="hot">是&nbsp;
+                    <input type="radio" id="no" value="0" name="hot" checked="checked">否
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">内容：</td>
+                <td>
+                    <textarea name="content" id="content" cols="80" rows="30"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="hidden" id="id" name="id">
+                    <a href="javascript:submitData()" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">
+                        发布
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 
 <script>
+    // 可见即所得编辑框替换内容输入框
+    CKEDITOR.replace('content');
 
+    // 获取地址栏中的查询参数
+    function getQueryString(name) {
+        // 匹配&name=value(&)形式的正则
+        var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)', 'i');
+        debugger;
+        // 编码地址栏的网址
+        var url = decodeURI(window.location.search);
+        // 匹配正则
+        var result = url.substr(1).match(reg);
+        if (result) {
+            // 解码网址
+            return unescape(result[2]);
+        }
+        return null;
+    }
+
+    // 获取地址栏中的查询参数id
+    var id = getQueryString('id');
+
+    debugger;
+    // 查询id对应电影的信息填充到页面上
+    $.post('/admin/movie/findById',
+        { id: id },
+        function (result) {
+            $('#id').val(result.id);
+            $('#name').val(result.name);
+            $('#title').val(result.title);
+            $('#imageName').val(result.imageName);
+
+            if (result.hot === 1) {
+                $('#yes').prop('checked', true);
+            } else {
+                $('#no').prop('checked', true);
+            }
+
+            // 将电影介绍填充到页面
+            CKEDITOR.instances.content.setData(result.content);
+        },
+        'json'
+    );
 </script>
 
 </body>

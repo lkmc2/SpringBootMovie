@@ -104,4 +104,11 @@ public interface MovieService {
      * @return 是否删除成功
      */
     boolean deleteMovie(int movieId);
+
+    /**
+     * 根据id查询电影
+     * @param movieId 电影id
+     * @return 对应的电影
+     */
+    Movie findById(Integer movieId);
 }
