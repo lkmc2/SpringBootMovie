@@ -147,19 +147,16 @@ public class MovieAdminController {
     }
 
     /**
-     * 下拉框模糊查询
+     * 电影动态下拉框模糊查询
      * @param q EasyUI传来的查询参数（电影名）
-     * @return 符合条件的
+     * @return 符合条件的电影列表
      */
     @PostMapping("/comboList")
     public List<Movie> comboList(String q) {
-        if (StringUtils.isEmpty(q)) {
-            return null;
-        }
         Movie movie = new Movie();
         movie.setName(q);
         // 根据条件分页查询电影
-        return movieService.list(movie, 1, 30);
+        return movieService.list(movie, 1, 15);
     }
 
 }

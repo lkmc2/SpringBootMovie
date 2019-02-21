@@ -2,6 +2,7 @@ package com.lin.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.lin.mapper.WebsiteMapper;
+import com.lin.mapper.WebsiteMapperCustom;
 import com.lin.model.Website;
 import com.lin.service.WebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class WebsiteServiceImpl implements WebsiteService {
 
     @Autowired
     private WebsiteMapper websiteMapper;
+
+    @Autowired
+    private WebsiteMapperCustom websiteMapperCustom;
 
     @Override
     public List<Website> getAllWebsiteList(Integer page, Integer pageSize) {
@@ -42,6 +46,14 @@ public class WebsiteServiceImpl implements WebsiteService {
     @Override
     public int getTotalCount() {
         return websiteMapper.selectCount(null);
+    }
+
+    @Override
+    public List<Website> list(Website website, Integer page, Integer pageSize) {
+        // 进行分页
+        PageHelper.startPage(page, pageSize);
+        // 根据查询条件进行分页
+        return websiteMapperCustom.list(website);
     }
 
 }

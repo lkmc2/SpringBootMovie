@@ -1,6 +1,9 @@
 package com.lin.service;
 
+import com.lin.model.Movie;
+import com.lin.model.MovieDetail;
 import com.lin.model.Website;
+import com.lin.model.vo.MovieDetailVo;
 
 import java.util.List;
 
@@ -22,4 +25,13 @@ public interface WebsiteService {
      * @return 所有记录条数
      */
     int getTotalCount();
+
+    /**
+     * 根据条件分页查询电影网站
+     * @param website 电影网站
+     * @param page 当前页数
+     * @param pageSize 每页条数
+     * @return 电影网站列表
+     */
+    List<Website> list(Website website, Integer page, Integer pageSize);
 }

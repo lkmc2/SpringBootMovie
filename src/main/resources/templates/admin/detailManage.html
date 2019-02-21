@@ -34,25 +34,25 @@
             url = '/admin/movieDetail/save';
         }
 
-        // $(document).ready(function () {
-        //     // 电影自动搜索（填充下拉框的数据）
-        //     $('#movie').combobox({
-        //         mode: 'remote', // 从服务器获取数据
-        //         url: '/admin/movie/comboList',
-        //         validField: 'id', // 绑定到value属性上的数据名称
-        //         textField: 'name', // 绑定到text属性上的数据名称
-        //         delay: 100
-        //     });
-        //
-        //     // 网站自动搜索（自动填充下拉框的数据）
-        //     $('#website').combobox({
-        //         mode: 'remote', // 从服务器获取数据
-        //         url: '/admin/website/comboList',
-        //         validField: 'id', // 绑定到value属性上的数据名称
-        //         textField: 'url', // 绑定到text属性上的数据名称
-        //         delay: 100
-        //     });
-        // })
+        $(document).ready(function () {
+            // 电影自动搜索（填充下拉框的数据）
+            $('#movie').combobox({
+                mode: 'remote', // 从服务器获取数据
+                url: '/admin/movie/comboList',
+                validField: 'id', // 绑定到value属性上的数据名称
+                textField: 'name', // 绑定到text属性上的数据名称
+                delay: 100
+            });
+
+            // 网站自动搜索（自动填充下拉框的数据）
+            $('#website').combobox({
+                mode: 'remote', // 从服务器获取数据
+                url: '/admin/website/comboList',
+                validField: 'id', // 绑定到value属性上的数据名称
+                textField: 'url', // 绑定到text属性上的数据名称
+                delay: 100
+            });
+        });
     </script>
 </head>
 
