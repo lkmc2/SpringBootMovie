@@ -134,7 +134,12 @@ public class MovieServiceImpl implements MovieService {
 
     @Override
     public boolean save(Movie movie) {
-        return movieMapper.insertSelective(movie) >= 1;
+        // id为空时，插入电影数据
+        if (movie.getId() == null) {
+            return movieMapper.insertSelective(movie) >= 1;
+        }
+        // 更新电影数据
+        return movieMapper.updateByPrimaryKey(movie) >= 1;
     }
 
     @Override
