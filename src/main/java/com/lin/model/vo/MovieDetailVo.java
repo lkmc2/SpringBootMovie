@@ -13,6 +13,7 @@ public class MovieDetailVo {
     private Integer id; // 电影动态id
     private String info; // 详情信息
     private Integer movieId; // 电影id
+    private String movieName; // 电影名
     private Integer websiteId; // 网站id
     private String websiteName; // 网站名称
     private String websiteUrl; // 网站网址

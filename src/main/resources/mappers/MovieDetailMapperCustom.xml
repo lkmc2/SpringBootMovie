@@ -8,6 +8,7 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="info" jdbcType="VARCHAR" property="info"/>
         <result column="movie_id" jdbcType="INTEGER" property="movieId"/>
+        <result column="movie_name" jdbcType="VARCHAR" property="movieName"/>
         <result column="website_id" jdbcType="INTEGER" property="websiteId"/>
         <result column="website_name" jdbcType="VARCHAR" property="websiteName"/>
         <result column="website_url" jdbcType="VARCHAR" property="websiteUrl"/>
@@ -21,6 +22,7 @@
            m.id,
            m.info,
            m.movie_id,
+           w.name as movie_name,
            m.website_id,
            w.name as website_name,
            m.url,
@@ -36,6 +38,7 @@
             m.id,
             m.info,
             m.movie_id,
+            w.name as movie_name,
             m.website_id,
             w.name as website_name,
             w.url as website_url,
@@ -52,6 +55,7 @@
             m.id,
             m.info,
             m.movie_id,
+            w.name as movie_name,
             m.website_id,
             w.name as website_name,
             w.url as website_url,
