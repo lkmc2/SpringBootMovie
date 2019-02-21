@@ -38,4 +38,11 @@ public interface WebsiteService {
      * @return 符合条件的电影网站数
      */
     int queryTotalCount(Website website);
+
+    /**
+     * 保存电影网站
+     * @param website 电影网站
+     * @return 是否保存成功
+     */
+    boolean save(Website website);
 }

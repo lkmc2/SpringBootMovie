@@ -61,4 +61,9 @@ public class WebsiteServiceImpl implements WebsiteService {
         return websiteMapperCustom.queryTotalCount(website);
     }
 
+    @Override
+    public boolean save(Website website) {
+        return websiteMapper.insertSelective(website) >= 1;
+    }
+
 }

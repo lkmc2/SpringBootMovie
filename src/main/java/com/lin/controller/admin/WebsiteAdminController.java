@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +56,24 @@ public class WebsiteAdminController {
     }
 
     /**
+     * 保存电影网站
+     * @param website 电影网站
+     * @param request 请求
+     * @return 执行结果
+     */
+    @PostMapping("/save")
+    public Map<String, Object> save(Website website, HttpServletRequest request) {
+        // 保存电影网站
+        boolean success = websiteService.save(website);
+        // 刷新全局数据
+        initSystem.loadData(request.getServletContext());
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("success", success);
+        return resultMap;
+    }
+
+    /**
      * 网站下拉框模糊查询
      * @param q EasyUI传来的查询参数（网站地址）
      * @return 符合条件的网站列表
@@ -70,26 +89,6 @@ public class WebsiteAdminController {
         // 根据条件分页查询电影
         return websiteService.list(website, 1, 20);
     }
-
-//    /**
-//     * 保存电影动态到数据库
-//     * @param movieDetail 电影动态
-//     * @param request 请求
-//     * @return 执行结果
-//     */
-//    @PostMapping("/save")
-//    public Map<String, Object> save(MovieDetail movieDetail, HttpServletRequest request) {
-//        // 更新发布日期
-//        movieDetail.setPublishDate(new Date());
-//        // 保存电影动态到数据库
-//        boolean success = movieDetailService.save(movieDetail);
-//        // 刷新全局数据
-//        initSystem.loadData(request.getServletContext());
-//
-//        Map<String, Object> resultMap = new HashMap<>();
-//        resultMap.put("success", success);
-//        return resultMap;
-//    }
 
 //    /**
 //     * 删除电影信息
