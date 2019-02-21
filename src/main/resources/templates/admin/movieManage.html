@@ -29,6 +29,14 @@
             // 打开Tab
             window.parent.openTab('修改电影', 'modifyMovie?id=' + selectedRow.id, 'icon-modifyFilm');
         }
+
+        // 搜索电影
+        function searchMovie() {
+            // 搜索搜索框输入的内容
+            $('#dg').datagrid('load', {
+                'name': $('#s_name').val()
+            });
+        }
     </script>
 </head>
 

@@ -2,6 +2,7 @@ package com.lin.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -37,6 +38,15 @@ public class IndexAdminController {
     @GetMapping("/movieManage")
     public String movieManage() {
         return "admin/movieManage";
+    }
+
+    /**
+     * 跳转到电影信息修改页面
+     * @return 电影信息修改页面
+     */
+    @GetMapping("/modifyMovie")
+    public String modifyMovie() {
+        return "admin/modifyMovie";
     }
 
     /**
