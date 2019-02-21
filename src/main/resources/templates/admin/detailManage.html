@@ -34,6 +34,42 @@
             url = '/admin/movieDetail/save';
         }
 
+        // 保存电影动态
+        function saveMovieDetail() {
+            $('#fm').form('submit', {
+                url: url,
+                onSubmit: function () {
+                    // 进行表单字段验证，通过后提交表单
+                    return $(this).form('validate');
+                },
+                success: function (result) {
+                    var res = eval('(' + result + ')');
+
+                    if (res.success) {
+                        $.messager.alert('系统提示', '保存成功！');
+                        // 重置输入框的值
+                        resetValue();
+                        // 关闭对话框
+                        $('#dlg').dialog('close');
+                        // 刷新数据表格
+                        $('#dg').datagrid('reload');
+                    } else {
+                        $.messager.alert('系统提示', '保存失败！');
+                    }
+                }
+            });
+        }
+
+        // 重置输入框的值
+        function resetValue() {
+            // 设置下拉的值为空
+            $('#movie').combobox('setValue', '');
+            $('#website').combobox('setValue', '');
+            // 设置输入框的值为空
+            $('#info').val('');
+            $('#url').val('');
+        }
+
         $(document).ready(function () {
             // 电影自动搜索（填充下拉框的数据）
             $('#movie').combobox({
