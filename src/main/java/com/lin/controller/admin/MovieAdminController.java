@@ -156,7 +156,7 @@ public class MovieAdminController {
         Movie movie = new Movie();
         movie.setName(q);
         // 根据条件分页查询电影
-        return movieService.list(movie, 1, 15);
+        return movieService.list(movie, 1, 20);
     }
 
 }

@@ -75,7 +75,7 @@
             $('#movie').combobox({
                 mode: 'remote', // 从服务器获取数据
                 url: '/admin/movie/comboList',
-                validField: 'id', // 绑定到value属性上的数据名称
+                valueField: 'id', // 绑定到value属性上的数据名称
                 textField: 'name', // 绑定到text属性上的数据名称
                 delay: 100
             });
@@ -84,7 +84,7 @@
             $('#website').combobox({
                 mode: 'remote', // 从服务器获取数据
                 url: '/admin/website/comboList',
-                validField: 'id', // 绑定到value属性上的数据名称
+                valueField: 'id', // 绑定到value属性上的数据名称
                 textField: 'url', // 绑定到text属性上的数据名称
                 delay: 100
             });
@@ -128,14 +128,14 @@
             <tr>
                 <td>电影名称：</td>
                 <td>
-                    <input type="text" id="movie" name="movie.id" size="24" maxlength="50"
+                    <input type="text" id="movie" name="movieId" size="24" maxlength="50"
                            class="easyui-combobox" data-options="required:true,panelHeight:'auto'"/>
                 </td>
             </tr>
             <tr>
                 <td>网站地址：</td>
                 <td>
-                    <input type="text" id="website" name="website.id" size="24" maxlength="50"
+                    <input type="text" id="website" name="websiteId" size="24" maxlength="50"
                            class="easyui-combobox" data-options="required:true,panelHeight:'auto'"/>
                 </td>
             </tr>
