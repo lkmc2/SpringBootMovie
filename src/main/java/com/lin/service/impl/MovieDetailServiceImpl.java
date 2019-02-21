@@ -66,5 +66,10 @@ public class MovieDetailServiceImpl implements MovieDetailService {
         return movieDetailMapper.insert(movieDetail) >= 1;
     }
 
+    @Override
+    public boolean deleteMovieDetailById(Integer movieDetailId) {
+        return movieDetailMapper.deleteByPrimaryKey(movieDetailId) >= 1;
+    }
+
 
 }

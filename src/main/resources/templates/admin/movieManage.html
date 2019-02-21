@@ -30,9 +30,7 @@
                 '您确定要删除这<font color=red>' + selectedRows.length + '</font>条数据嘛吗？',
                 function (r) {
                     if (r) {
-                        $.post('/admin/movie/delete',
-                            { ids: ids },
-                            function (result) {
+                        $.post('/admin/movie/delete', { ids: ids }, function (result) {
                                 if (result.success) {
                                     $.messager.alert('系统提示', '数据已删除成功！');
                                 } else {
@@ -40,8 +38,7 @@
                                 }
                                 // 重新加载表格
                                 $('#dg').datagrid('reload');
-                            }
-                        )
+                            },'json');
                     }
                 }
             );

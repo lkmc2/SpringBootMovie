@@ -53,4 +53,11 @@ public interface MovieDetailService {
      * @return 是否保存成功
      */
     boolean save(MovieDetail movieDetail);
+
+    /**
+     * 根据id删除电影动态
+     * @param movieDetailId 电影动态id
+     * @return 是否删除成功
+     */
+    boolean deleteMovieDetailById(Integer movieDetailId);
 }

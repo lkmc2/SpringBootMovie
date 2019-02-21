@@ -17,6 +17,41 @@
             });
         }
 
+        // 删除电影动态
+        function deleteMovieDetail() {
+            // 获取所有被选中的行
+            var selectedRows = $('#dg').datagrid('getSelections');
+            if (selectedRows.length === 0) {
+                $.messager.alert('系统提示', '请选择要删除的电影动态！');
+                return;
+            }
+
+            // 要删除电影的id数组
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+
+            // 合并id为字符串
+            var ids = strIds.join(',');
+            $.messager.confirm('系统提示',
+                '您确定要删除这<font color=red>' + selectedRows.length + '</font>条数据嘛吗？',
+                function (r) {
+                    if (r) {
+                        $.post('/admin/movieDetail/delete', { ids: ids }, function (result) {
+                                if (result.success) {
+                                    $.messager.alert('系统提示', '数据已删除成功！');
+                                } else {
+                                    $.messager.alert('系统提示', '数据删除失败！');
+                                }
+                                // 重新加载表格
+                                $('#dg').datagrid('reload');
+                            },  'json');
+                    }
+                }
+            );
+        }
+
         // 格式化电影名
         function formatMovieName(val, row) {
             return row.movieName;
