@@ -47,6 +47,11 @@
             );
         }
 
+        // 格式化电影图片
+        function formatImageName(val, row) {
+            return "<img width=100 height=100 src='/static/movieImage/" + val + "'/>";
+        }
+
         // 格式化热度输入框的内容
         function formatHot(val, row) {
             if (val === 1) {
@@ -87,7 +92,7 @@
         <tr>
             <th field="cb" checkbox="true" align="center"></th>
             <th field="id" width="20" align="center">编号</th>
-            <th field="imageName" width="50" align="center">电影图片</th>
+            <th field="imageName" width="50" align="center" formatter="formatImageName">电影图片</th>
             <th field="name" width="100" align="center">电影名称</th>
             <th field="title" width="200" align="center">帖子标题</th>
             <th field="hot" width="50" align="center" formatter="formatHot">热门？</th>
@@ -105,7 +110,6 @@
         <a href="javascript:searchMovie()" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
     </div>
 </div>
-
 
 </body>
 
