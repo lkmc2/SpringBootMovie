@@ -2,6 +2,7 @@ package com.lin.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.lin.mapper.FriendlyLinkMapper;
+import com.lin.mapper.FriendlyLinkMapperCustom;
 import com.lin.model.FriendlyLink;
 import com.lin.service.FriendlyLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,9 @@ public class FriendlyLinkServiceImpl implements FriendlyLinkService {
     @Autowired
     private FriendlyLinkMapper friendlyLinkMapper;
 
+    @Autowired
+    private FriendlyLinkMapperCustom friendlyLinkMapperCustom;
+
     @Override
     public List<FriendlyLink> newestLinkList(Integer page, Integer pageSize) {
         if (page == null) {
@@ -37,6 +41,34 @@ public class FriendlyLinkServiceImpl implements FriendlyLinkService {
         example.setOrderByClause("sort");
 
         return friendlyLinkMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<FriendlyLink> list(FriendlyLink friendlyLink, Integer page, Integer pageSize) {
+        // 使用分页插件
+        PageHelper.startPage(page, pageSize);
+        // 分页查询友情链接
+        return friendlyLinkMapperCustom.list(friendlyLink);
+    }
+
+    @Override
+    public int queryTotalCount(FriendlyLink friendlyLink) {
+        return friendlyLinkMapperCustom.queryTotalCount(friendlyLink);
+    }
+
+    @Override
+    public boolean save(FriendlyLink friendlyLink) {
+        // 没有id时插入数据
+        if (friendlyLink.getId() == null) {
+            return friendlyLinkMapper.insert(friendlyLink) >= 1;
+        }
+        // 更新数据
+        return friendlyLinkMapper.updateByPrimaryKeySelective(friendlyLink) >= 1;
+    }
+
+    @Override
+    public boolean deleteLink(Integer linkId) {
+        return friendlyLinkMapper.deleteByPrimaryKey(linkId) >= 1;
     }
 
 }

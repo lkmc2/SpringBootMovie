@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.mapper.FriendlyLinkMapperCustom">
+  <resultMap id="BaseResultMap" type="com.lin.model.FriendlyLink">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+  </resultMap>
+
+  <!--分页查询友情链接-->
+  <select id="list" resultMap="BaseResultMap">
+      select
+             id,
+             name,
+             sort,
+             url
+      from friendly_link
+      <where>
+          <if test="name != null and name != ''">
+            and name like concat('%', #{name} '%')
+          </if>
+        <if test="url != null and url != ''">
+          and url like concat('%', #{url} '%')
+        </if>
+      </where>
+  </select>
+
+  <!--查询符合条件的友情链接数-->
+  <select id="queryTotalCount" resultType="int">
+    select count(1)
+    from friendly_link
+    <where>
+      <if test="name != null and name != ''">
+        and name like concat('%', #{name} '%')
+      </if>
+      <if test="url != null and url != ''">
+        and url like concat('%', #{url} '%')
+      </if>
+    </where>
+  </select>
+
+</mapper>
