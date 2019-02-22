@@ -2,6 +2,7 @@ package com.lin.model.vo;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Date;
  * @author lkmc2
  */
 @Data
-public class MovieDetailVo {
+public class MovieDetailVo implements Serializable {
     private Integer id; // 电影动态id
     private String info; // 详情信息
     private Integer movieId; // 电影id

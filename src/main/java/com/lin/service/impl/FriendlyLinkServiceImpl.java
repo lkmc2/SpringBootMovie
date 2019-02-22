@@ -6,6 +6,9 @@ import com.lin.mapper.FriendlyLinkMapperCustom;
 import com.lin.model.FriendlyLink;
 import com.lin.service.FriendlyLinkService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -16,6 +19,7 @@ import java.util.List;
  * @author lkmc2
  */
 @Service
+@CacheConfig(cacheNames = {"friendlyLinkServiceImpl"})
 public class FriendlyLinkServiceImpl implements FriendlyLinkService {
 
     @Autowired
@@ -25,6 +29,7 @@ public class FriendlyLinkServiceImpl implements FriendlyLinkService {
     private FriendlyLinkMapperCustom friendlyLinkMapperCustom;
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0 + #p1")
     public List<FriendlyLink> newestLinkList(Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
@@ -44,6 +49,7 @@ public class FriendlyLinkServiceImpl implements FriendlyLinkService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0.name + #p0.url + #p1 + #p2")
     public List<FriendlyLink> list(FriendlyLink friendlyLink, Integer page, Integer pageSize) {
         // 使用分页插件
         PageHelper.startPage(page, pageSize);
@@ -52,11 +58,14 @@ public class FriendlyLinkServiceImpl implements FriendlyLinkService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0.name + #p0.url")
     public int queryTotalCount(FriendlyLink friendlyLink) {
         return friendlyLinkMapperCustom.queryTotalCount(friendlyLink);
     }
 
     @Override
+    // 方法执行后清空所有缓存
+    @CacheEvict(allEntries = true)
     public boolean save(FriendlyLink friendlyLink) {
         // 没有id时插入数据
         if (friendlyLink.getId() == null) {
@@ -67,6 +76,8 @@ public class FriendlyLinkServiceImpl implements FriendlyLinkService {
     }
 
     @Override
+    // 方法执行后清空所有缓存
+    @CacheEvict(allEntries = true)
     public boolean deleteLink(Integer linkId) {
         return friendlyLinkMapper.deleteByPrimaryKey(linkId) >= 1;
     }

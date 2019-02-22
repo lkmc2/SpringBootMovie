@@ -2,12 +2,13 @@ package com.lin.model;
 
 import lombok.Data;
 
-import java.util.Date;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 @Data
 @Table(name = "movie_detail")
-public class MovieDetail {
+public class MovieDetail implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; // 电影动态id

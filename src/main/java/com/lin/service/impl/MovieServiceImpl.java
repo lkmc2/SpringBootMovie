@@ -6,6 +6,9 @@ import com.lin.mapper.MovieMapperCustom;
 import com.lin.model.Movie;
 import com.lin.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -16,6 +19,7 @@ import java.util.List;
  * @author lkmc2
  */
 @Service
+@CacheConfig(cacheNames = {"movieServiceImpl"})
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
@@ -25,6 +29,7 @@ public class MovieServiceImpl implements MovieService {
     private MovieMapperCustom movieMapperCustom;
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0 + #p1")
     public List<Movie> getAllMovieList(Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
@@ -44,6 +49,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0 + #p1")
     public List<Movie> getHotMovieList(Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
@@ -65,6 +71,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0 + #p1")
     public List<Movie> newestMovieList(Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
@@ -84,21 +91,25 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0")
     public Movie getById(Integer id) {
         return movieMapper.selectByPrimaryKey(id);
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0")
     public Movie getLast(Integer id) {
         return movieMapper.selectByPrimaryKey(id - 1);
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0")
     public Movie getNext(Integer id) {
         return movieMapper.selectByPrimaryKey(id + 1);
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0")
     public List<Movie> randomList(Integer count) {
         if (count == null) {
             count = 10;
@@ -107,6 +118,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0 + #p1 + #p2")
     public List<Movie> queryMovieByName(String movieName, Integer page, Integer pageSize) {
         if (page == null) {
             page = 1;
@@ -128,11 +140,14 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName")
     public Integer getTotalCount() {
         return movieMapper.selectCount(null);
     }
 
     @Override
+    // 方法执行后清空所有缓存
+    @CacheEvict(allEntries = true)
     public boolean save(Movie movie) {
         // id为空时，插入电影数据
         if (movie.getId() == null) {
@@ -143,6 +158,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0.name + #p1 + #p2")
     public List<Movie> list(Movie movie, Integer page, Integer pageSize) {
         // 进行分页
         PageHelper.startPage(page, pageSize);
@@ -150,16 +166,20 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0.id")
     public int queryTotalCount(Movie movie) {
         return movieMapperCustom.queryTotalCount(movie);
     }
 
     @Override
+    // 方法执行后清空所有缓存
+    @CacheEvict(allEntries = true)
     public boolean deleteMovie(int movieId) {
         return movieMapper.deleteByPrimaryKey(movieId) >= 1;
     }
 
     @Override
+    @Cacheable(key = "targetClass + methodName + #p0")
     public Movie findById(Integer movieId) {
         return movieMapper.selectByPrimaryKey(movieId);
     }
