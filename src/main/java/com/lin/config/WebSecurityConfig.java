@@ -1,5 +1,6 @@
 package com.lin.config;
 
+import com.lin.utils.MyPasswordEncoder;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -26,14 +27,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .anyRequest().authenticated()
             .and()
             .formLogin()
-            // 指定登录页是/login，登陆成功跳转到/admin
-            .loginPage("/login")
+            // 登陆成功跳转到/admin
             .defaultSuccessUrl("/admin")
             .permitAll()
             .and()
-            // 退出成功跳转到/login
+            // 退出成功跳转到/index
             .logout()
-            .logoutSuccessUrl("/login")
+            .logoutSuccessUrl("/index")
             .permitAll();
     }
 
@@ -42,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
+            .passwordEncoder(new MyPasswordEncoder())
             .withUser("admin")
             .password("123456")
             .roles("ADMIN");
