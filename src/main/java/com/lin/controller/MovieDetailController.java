@@ -37,7 +37,7 @@ public class MovieDetailController {
 
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("movieDetailList", movieDetailList);
-        mv.addObject("pageCode", PageUtils.generatePagination("/movieDetail/queryMovie", total, page, 20));
+        mv.addObject("pageCode", PageUtils.generatePagination("/movieDetail/list", total, page, 20));
         mv.addObject("title", "电影网站动态信息列表");
         mv.addObject("mainPage", "movieDetail/movie_detail_list");
         mv.addObject("fragment", "movie_detail_list");
