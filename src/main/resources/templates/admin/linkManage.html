@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>友情链接管理页面</title>
+    <link href="../../static/jquery-easyui-1.3.3/themes/default/easyui.css" th:href="@{/static/jquery-easyui-1.3.3/themes/default/easyui.css}" rel="stylesheet" type="text/css"/>
+    <link href="../../static/jquery-easyui-1.3.3/themes/icon.css" th:href="@{/static/jquery-easyui-1.3.3/themes/icon.css}" rel="stylesheet" type="text/css"/>
+    <script src="../../static/jquery-easyui-1.3.3/jquery.min.js" th:src="@{/static/jquery-easyui-1.3.3/jquery.min.js}" type="text/javascript"></script>
+    <script src="../../static/jquery-easyui-1.3.3/jquery.easyui.min.js" th:src="@{/static/jquery-easyui-1.3.3/jquery.easyui.min.js}" type="text/javascript"></script>
+    <script src="../../static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js" th:src="@{/static/jquery-easyui-1.3.3/locale/easyui-lang-zh_CN.js}" type="text/javascript"></script>
+    <script>
+        // 删除友情链接
+        function deleteLink() {
+            // 获取所有被选中的行
+            var selectedRows = $('#dg').datagrid('getSelections');
+            if (selectedRows.length === 0) {
+                $.messager.alert('系统提示', '请选择要删除的友情链接！');
+                return;
+            }
+
+            // 要删除友情链接的id数组
+            var strIds = [];
+            for (var i = 0; i < selectedRows.length; i++) {
+                strIds.push(selectedRows[i].id);
+            }
+
+            // 合并id为字符串
+            var ids = strIds.join(',');
+            $.messager.confirm('系统提示',
+                '您确定要删除这<font color=red>' + selectedRows.length + '</font>条数据嘛吗？',
+                function (r) {
+                    if (r) {
+                        $.post('/admin/link/delete', { ids: ids }, function (result) {
+                            if (result.success) {
+                                $.messager.alert('系统提示', '数据已删除成功！');
+                            } else {
+                                $.messager.alert('系统提示','数据删除失败！');
+                            }
+                            // 重新加载表格
+                            $('#dg').datagrid('reload');
+                        },'json');
+                    }
+                }
+            );
+        }
+
+        // 搜索友情链接
+        function searchLink() {
+            // 用搜索框的值（参数为name和url）传给服务器，重新加载表格
+            $('#dg').datagrid('load', {
+                'name': $('#s_name').val(),
+                'url': $('#s_url').val()
+            });
+        }
+
+        var url;
+
+        // 打开添加友情链接的对话框
+        function openLinkAddDialog() {
+            // 打开对话框
+            $('#dlg').dialog('open').dialog('setTitle', '添加友情链接信息');
+            url = '/admin/friendly_link/save';
+        }
+
+        // 打开修改友情链接的对话框
+        function openLinkModifyDialog() {
+            // 获取第一个选中的行
+            var selectedRow = $('#dg').datagrid('getSelected');
+            if (selectedRow === null) {
+                $.messager.alert('系统提示', '请选择一个要修改的友情链接！');
+                return;
+            }
+
+            // 打开对话框
+            $('#dlg').dialog('open').dialog('setTitle', '编辑友情链接信息');
+            // 单独刷新被选中行的数据
+            $('#fm').form('load', selectedRow);
+
+            url = '/admin/friendly_link/save?id=' + selectedRow.id;
+        }
+
+        // 保存友情链接
+        function saveLink() {
+            $('#fm').form('submit', {
+                url: url,
+                onSubmit: function () {
+                    // 进行表单字段验证，通过后提交表单
+                    return $(this).form('validate');
+                },
+                success: function (result) {
+                    var res = eval('(' + result + ')');
+
+                    if (res.success) {
+                        $.messager.alert('系统提示', '保存成功！');
+                        // 重置新增电影动态对话的输入框的值
+                        resetValue();
+                        // 关闭对话框
+                        $('#dlg').dialog('close');
+                        // 刷新数据表格
+                        $('#dg').datagrid('reload');
+                    } else {
+                        $.messager.alert('系统提示', '保存失败！');
+                    }
+                }
+            });
+        }
+
+        // 关闭添加友情链接对话框
+        function closeWebsiteDialog() {
+            $('#dlg').dialog('close');
+            // 重置新增友情链接对话的输入框的值
+            resetValue();
+        }
+
+        // 重置新增友情链接对话的输入框的值
+        function resetValue() {
+            $('#name').val('');
+            $('#url').val('');
+            $('#sort').val('');
+        }
+    </script>
+</head>
+
+<body style="margin: 1px;">
+
+<table id="dg" title="友情链接管理" class="easyui-datagrid"
+       fitColumns="true" pagination="true" rownumbers="true"
+        url="/admin/friendly_link/list" fit="true" toolbar="#tb">
+    <thead>
+        <tr>
+            <th field="cb" checkbox="true" align="center"></th>
+            <th field="id" width="20" align="center">编号</th>
+            <th field="name" width="200" align="center">网站名称</th>
+            <th field="url" width="200" align="center">网站地址</th>
+            <th field="sort" width="100" align="center">排列序号</th>
+        </tr>
+    </thead>
+</table>
+
+<div id="tb">
+    <div style="margin-top: 5px; margin-bottom: 5px;">
+        <a href="javascript:openLinkAddDialog()" class="easyui-linkbutton" iconCls="icon-edit">添加</a>
+        <a href="javascript:openLinkModifyDialog()" class="easyui-linkbutton" iconCls="icon-edit">修改</a>
+        <a href="javascript:deleteLink()" class="easyui-linkbutton" iconCls="icon-remove">删除</a>
+        &nbsp;&nbsp;友情链接名称：&nbsp;
+        <input type="text" id="s_name" size="20" onkeydown="if (event.keyCode === 13) searchLink()"/>&nbsp;&nbsp;
+        &nbsp;&nbsp;友情链接地址：&nbsp;
+        <input type="text" id="s_url" size="20" onkeydown="if (event.keyCode === 13) searchLink()"/>&nbsp;&nbsp;
+        <a href="javascript:searchLink()" class="easyui-linkbutton" iconCls="icon-search">搜索</a>
+    </div>
+</div>
+
+<div id="dlg" class="easyui-dialog" style="width: 500px; height: 180px; padding: 10px 20px"
+     closed="true" buttons="#dlg-buttons">
+
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>友情链接名称：</td>
+                <td>
+                    <input type="text" id="name" name="name" size="24" maxlength="50"
+                           class="easyui-validatebox" required="required" style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>友情链接地址：</td>
+                <td>
+                    <input type="text" id="url" name="url" size="24" maxlength="50"
+                           class="easyui-validatebox" validType="url" required="required" style="width: 250px"/>
+                </td>
+            </tr>
+            <tr>
+                <td>友情链接排序：</td>
+                <td>
+                    <input type="text" id="sort" name="sort" size="24" maxlength="50"
+                           class="easyui-validatebox" validType="url" required="required" style="width: 250px"/>
+                    &nbsp;（友情链接根据排序序号从小到大排序）
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</div>
+
+<div id="dlg-buttons">
+    <a href="javascript:saveLink()" class="easyui-linkbutton" iconCls="icon-ok">保存</a>
+    <a href="javascript:closeWebsiteDialog()" class="easyui-linkbutton" iconCls="icon-cancel">关闭</a>
+</div>
+
+</body>
+
+</html>
