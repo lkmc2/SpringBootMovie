@@ -38,6 +38,15 @@ public class IndexController {
     }
 
     /**
+     * 跳转到登陆页面
+     * @return 登陆页面
+     */
+    @GetMapping("/login")
+    public String toLogin() {
+        return "login";
+    }
+
+    /**
      * 跳转到后台管理页面
      * @return 后台管理页面
      */

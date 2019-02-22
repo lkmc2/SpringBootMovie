@@ -4,23 +4,20 @@ import com.lin.init.InitSystem;
 import com.lin.model.Movie;
 import com.lin.service.MovieDetailService;
 import com.lin.service.MovieService;
-
 import com.lin.utils.DateUtils;
-
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 管理员电影控制器
@@ -157,6 +154,28 @@ public class MovieAdminController {
         movie.setName(q);
         // 根据条件分页查询电影
         return movieService.list(movie, 1, 20);
+    }
+
+    /**
+     * ckeditor 上传图片
+     * @param file 文件
+     * @param CKEditorFuncNum ckeditor函数
+     * @return JavaScript代码
+     */
+    @RequestMapping("/ckeditorUpload")
+    public String ckeditorUpload(@RequestParam("upload")MultipartFile file,String CKEditorFuncNum)throws Exception{
+        // 获取文件名
+        String fileName = file.getOriginalFilename();
+        // 获取文件的后缀名
+        String suffixName = fileName.substring(Objects.requireNonNull(fileName).lastIndexOf("."));
+        String newFileName = DateUtils.getCurrentDateStr()+suffixName;
+        FileUtils.copyInputStreamToFile(file.getInputStream(), new File(imageFilePath+newFileName));
+
+        StringBuffer sb = new StringBuffer();
+        sb.append("<script type=\"text/javascript\">");
+        sb.append("window.parent.CKEDITOR.tools.callFunction("+ CKEditorFuncNum + ",'" +"/static/filmImage/"+ newFileName + "','')");
+        sb.append("</script>");
+        return sb.toString();
     }
 
 }
