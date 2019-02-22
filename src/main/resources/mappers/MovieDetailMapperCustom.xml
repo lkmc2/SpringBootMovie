@@ -81,4 +81,21 @@
         </where>
     </select>
 
+    <!--根据网站id获取电影动态列表-->
+    <select id="getByWebsiteId" resultMap="BaseResultMap">
+        select
+            m.id,
+            m.info,
+            m.movie_id,
+            w.name as movie_name,
+            m.website_id,
+            w.name as website_name,
+            w.url as website_url,
+            m.url,
+            m.publish_date
+        from movie_detail m
+        left join website w on m.website_id = w.id
+        where w.id = #{websiteId}
+    </select>
+
 </mapper>

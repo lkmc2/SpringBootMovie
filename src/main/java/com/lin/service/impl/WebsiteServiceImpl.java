@@ -71,4 +71,9 @@ public class WebsiteServiceImpl implements WebsiteService {
         return websiteMapper.updateByPrimaryKeySelective(website) >= 1;
     }
 
+    @Override
+    public boolean deleteWebsite(Integer websiteId) {
+        return websiteMapper.deleteByPrimaryKey(websiteId) >= 1;
+    }
+
 }

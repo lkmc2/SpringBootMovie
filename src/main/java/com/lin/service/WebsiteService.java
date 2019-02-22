@@ -45,4 +45,11 @@ public interface WebsiteService {
      * @return 是否保存成功
      */
     boolean save(Website website);
+
+    /**
+     * 根据id删除网站
+     * @param websiteId 网站id
+     * @return 是否删除成功
+     */
+    boolean deleteWebsite(Integer websiteId);
 }

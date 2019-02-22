@@ -63,12 +63,22 @@ public class MovieDetailServiceImpl implements MovieDetailService {
 
     @Override
     public boolean save(MovieDetail movieDetail) {
-        return movieDetailMapper.insert(movieDetail) >= 1;
+        // id为空则插入数据
+        if (movieDetail.getId() == null) {
+            return movieDetailMapper.insert(movieDetail) >= 1;
+        }
+        // 更新数据
+        return movieDetailMapper.updateByPrimaryKeySelective(movieDetail) >= 1;
     }
 
     @Override
     public boolean deleteMovieDetailById(Integer movieDetailId) {
         return movieDetailMapper.deleteByPrimaryKey(movieDetailId) >= 1;
+    }
+
+    @Override
+    public List<MovieDetailVo> getByWebsiteId(Integer websiteId) {
+        return movieDetailMapperCustom.getByWebsiteId(websiteId);
     }
 
 

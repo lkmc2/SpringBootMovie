@@ -60,4 +60,11 @@ public interface MovieDetailService {
      * @return 是否删除成功
      */
     boolean deleteMovieDetailById(Integer movieDetailId);
+
+    /**
+     * 根据网站id获取电影动态列表
+     * @param websiteId 网站id
+     * @return 电影动态列表
+     */
+    List<MovieDetailVo> getByWebsiteId(Integer websiteId);
 }

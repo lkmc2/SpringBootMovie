@@ -37,4 +37,11 @@ public interface MovieDetailMapperCustom extends MyMapper<MovieDetail> {
      * @return 符合条件的电影数
      */
     int queryTotalCount(MovieDetail movieDetail);
+
+    /**
+     * 根据网站id获取电影动态列表
+     * @param websiteId 网站id
+     * @return 电影动态列表
+     */
+    List<MovieDetailVo> getByWebsiteId(Integer websiteId);
 }

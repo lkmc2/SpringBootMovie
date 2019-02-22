@@ -2,6 +2,7 @@ package com.lin.controller.admin;
 
 import com.lin.init.InitSystem;
 import com.lin.model.Website;
+import com.lin.service.MovieDetailService;
 import com.lin.service.WebsiteService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class WebsiteAdminController {
 
     @Autowired
     private WebsiteService websiteService;
+
+    @Autowired
+    private MovieDetailService movieDetailService;
 
     @Autowired
     private InitSystem initSystem;
@@ -90,49 +94,39 @@ public class WebsiteAdminController {
         return websiteService.list(website, 1, 20);
     }
 
-//    /**
-//     * 删除电影信息
-//     * @param ids 多个电影id
-//     * @return 执行结果
-//     */
-//    @PostMapping("/delete")
-//    public Map<String, Object> delete(@RequestParam("ids") String ids, HttpServletRequest request) {
-//        String[] idStr = ids.split(",");
-//        // 是否删除成功
-//        boolean isDeleteSuccess = true;
-//
-//        for (String id : idStr) {
-//            int movieId = Integer.parseInt(id);
-//
-//            // 当电影被电影详情表引用时，不删除该电影
-//            if (movieDetailService.getByMovieId(movieId).size() > 0) {
-//                isDeleteSuccess = false;
-//            } else {
-//                // 删除指定id的电影
-//                movieService.deleteMovie(movieId);
-//            }
-//        }
-//        // 重新加载全局电影信息
-//        initSystem.loadData(request.getServletContext());
-//
-//        Map<String, Object> resultMap = new HashMap<>();
-//        if (isDeleteSuccess) {
-//            resultMap.put("success", true);
-//        } else {
-//            resultMap.put("success", false);
-//            resultMap.put("errorInfo", "电影动态信息存在电影信息，不能删除！");
-//        }
-//        return resultMap;
-//    }
-//
-//    /**
-//     * 根据id查询电影
-//     * @param id 电影id
-//     * @return 对应的电影
-//     */
-//    @PostMapping("/findById")
-//    public Movie findById(Integer id) {
-//        return movieService.findById(id);
-//    }
+    /**
+     * 删除电影网站信息
+     * @param ids 多个电影网站id
+     * @return 执行结果
+     */
+    @PostMapping("/delete")
+    public Map<String, Object> delete(@RequestParam("ids") String ids, HttpServletRequest request) {
+        String[] idStr = ids.split(",");
+        // 是否删除成功
+        boolean isDeleteSuccess = true;
+
+        for (String id : idStr) {
+            int websiteId = Integer.parseInt(id);
+
+            // 当网站被电影动态表引用时，不删除该网站
+            if (movieDetailService.getByWebsiteId(websiteId).size() > 0) {
+                isDeleteSuccess = false;
+            } else {
+                // 删除指定id的网站
+                websiteService.deleteWebsite(websiteId);
+            }
+        }
+        // 重新加载全局电影信息
+        initSystem.loadData(request.getServletContext());
+
+        Map<String, Object> resultMap = new HashMap<>();
+        if (isDeleteSuccess) {
+            resultMap.put("success", true);
+        } else {
+            resultMap.put("success", false);
+            resultMap.put("errorInfo", "电影动态信息存在电影网站信息，不能删除！");
+        }
+        return resultMap;
+    }
 
 }
