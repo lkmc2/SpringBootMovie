@@ -29,6 +29,12 @@
             <version>2.0.0</version>
         </dependency>
 
+        <!--Spring Security安全控制-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--Thymeleaf模版-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
