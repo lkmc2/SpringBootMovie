@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     // 请求授权
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.csrf().disable().cors().disable().headers().disable()
             .authorizeRequests()
             // 以下地址无需权限验证
             .antMatchers("/index", "/movie/**", "/website/**", "/movieDetail/**", "/aboutMe", "/static/**")
