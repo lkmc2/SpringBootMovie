@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @MapperScan("com.lin.mapper")
-@EnableCaching  //开启缓存
+@EnableCaching  // 开启缓存
 @SpringBootApplication
 public class SpringBootMovieApplication {
 
