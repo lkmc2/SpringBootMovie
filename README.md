@@ -21,3 +21,13 @@
 5. 运行AwesomeVideoAdminApplication.java启动项目。
 6. 在浏览器中访问http://localhost:8080/index ，进入电影首页。
 7. 在浏览器中访问http://localhost:8080/login ，输入用户名admin，密码123456，进入后台管理系统。
+
+**项目界面截图**：
+
+<img src="https://raw.githubusercontent.com/lkmc2/SpringBootMovie/master/picture/%E7%94%B5%E5%BD%B1%E9%A6%96%E9%A1%B5.png"/>
+
+<img src="https://raw.githubusercontent.com/lkmc2/SpringBootMovie/master/picture/%E7%94%B5%E5%BD%B1%E8%AF%A6%E6%83%85%E9%A1%B5.png"/>
+
+<img src="https://raw.githubusercontent.com/lkmc2/SpringBootMovie/master/picture/%E5%90%8E%E5%8F%B0%E6%B7%BB%E5%8A%A0%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF.png"/>
+
+<img src="https://raw.githubusercontent.com/lkmc2/SpringBootMovie/master/picture/%E5%90%8E%E5%8F%B0%E7%94%B5%E5%BD%B1%E4%BF%A1%E6%81%AF%E7%AE%A1%E7%90%86.png"/>
