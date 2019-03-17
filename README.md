@@ -15,7 +15,7 @@
 - 管理友情链接
 
 
-### 项目使用的技术
+## 项目使用的技术
 
 - 框架：Spring Boot 2.0.5.RELEASE、Mybatis
 - 模板：Thymeleaf
@@ -24,7 +24,7 @@
 - 安全控制：Spring Security
 - 插件：Druid连接池、Mybatis Generator、通用Mapper、PageHelper分页插件、Lombok、Spring Boot Devtools热部署
 
-### 项目运行方式
+## 项目运行方式
 
 1. 创建数据库spring_boot_movie。
 2. 在数据库中运行src/main/resources下的spring_boot_movie.sql文件。
@@ -34,7 +34,7 @@
 6. 在浏览器中访问http://localhost:8080/index ，进入电影首页。
 7. 在浏览器中访问http://localhost:8080/login ，输入用户名admin，密码123456，进入后台管理系统。
 
-### 项目界面截图
+## 项目界面截图
 
 <img src="https://raw.githubusercontent.com/lkmc2/SpringBootMovie/master/picture/%E7%94%B5%E5%BD%B1%E9%A6%96%E9%A1%B5.png"/>
 
