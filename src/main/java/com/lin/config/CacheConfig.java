@@ -21,8 +21,8 @@ public class CacheConfig {
     public CacheManager cacheManager(@Autowired RedisConnectionFactory connectionFactory) {
         return RedisCacheManager
                 .builder(connectionFactory)
-                // 设置缓存过期时间为5分钟
-                .cacheDefaults(RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(5)))
+                // 设置缓存过期时间为3天
+                .cacheDefaults(RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofDays(3)))
                 .transactionAware()
                 .build();
     }
